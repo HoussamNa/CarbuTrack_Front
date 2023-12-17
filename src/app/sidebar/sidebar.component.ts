@@ -1,4 +1,5 @@
-import { AfterViewInit, Component, ElementRef, ViewChild, HostListener } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, ViewChild, HostListener, Inject, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'app-sidebar',
@@ -8,13 +9,19 @@ import { AfterViewInit, Component, ElementRef, ViewChild, HostListener } from '@
 export class SidebarComponent implements AfterViewInit {
   @ViewChild('sidebar') sidebar!: ElementRef;
 
+  constructor(@Inject(PLATFORM_ID) private platformId: Object) {}
+
   ngAfterViewInit(): void {
-    this.checkScreenSize();
+    if (isPlatformBrowser(this.platformId)) {
+      this.checkScreenSize();
+    }
   }
 
   @HostListener('window:resize', ['$event'])
   onResize(event: any): void {
-    this.checkScreenSize();
+    if (isPlatformBrowser(this.platformId)) {
+      this.checkScreenSize();
+    }
   }
 
   private checkScreenSize(): void {

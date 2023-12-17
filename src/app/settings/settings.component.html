@@ -1,1 +1,39 @@
-<p>settings works!</p>
+<div class="settings-container">
+    <h2>Paramètres du Compte</h2>
+    <form class="settings-form">
+        <!-- Section Informations Utilisateur -->
+        <fieldset>
+            <legend>Informations Personnelles</legend>
+            <div class="form-group">
+                <label for="username">Nom d'utilisateur:</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+
+            <div class="form-group">
+                <label for="email">E-mail:</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+        </fieldset>
+
+        <!-- Section Mise à Jour du Mot de Passe -->
+        <fieldset>
+            <legend>Changer le Mot de Passe</legend>
+            <div class="form-group">
+                <label for="current-password">Mot de Passe Actuel:</label>
+                <input type="password" id="current-password" name="current-password" required>
+            </div>
+
+            <div class="form-group">
+                <label for="new-password">Nouveau Mot de Passe:</label>
+                <input type="password" id="new-password" name="new-password" required>
+            </div>
+
+            <div class="form-group">
+                <label for="confirm-password">Confirmer le Nouveau Mot de Passe:</label>
+                <input type="password" id="confirm-password" name="confirm-password" required>
+            </div>
+        </fieldset>
+
+        <button type="submit" class="submit-btn">Mettre à Jour</button>
+    </form>
+</div>
