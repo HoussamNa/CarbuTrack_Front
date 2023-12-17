@@ -1,4 +1,4 @@
-import { Component, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, ViewChild, HostListener } from '@angular/core';
 
 @Component({
   selector: 'app-sidebar',
@@ -8,15 +8,24 @@ import { Component, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
 export class SidebarComponent implements AfterViewInit {
   @ViewChild('sidebar') sidebar!: ElementRef;
 
-  ngAfterViewInit() {
+  ngAfterViewInit(): void {
     this.checkScreenSize();
   }
 
-  checkScreenSize() {
-    if (window.innerWidth < 960) {
-      this.sidebar.nativeElement.style.width = '0';
-    } else {
-      this.sidebar.nativeElement.style.width = '240px';
+  @HostListener('window:resize', ['$event'])
+  onResize(event: any): void {
+    this.checkScreenSize();
+  }
+
+  private checkScreenSize(): void {
+    try {
+      if (window.innerWidth < 960) {
+        this.sidebar.nativeElement.style.width = '0';
+      } else {
+        this.sidebar.nativeElement.style.width = '240px';
+      }
+    } catch (error) {
+      console.error('Error checking screen size:', error);
     }
   }
 }

@@ -1,1 +1,51 @@
-<p>home works!</p>
+<!-- home.component.html -->
+
+<div class="dashboard-container">
+    <!-- Line Chart -->
+    <ngx-charts-line-chart
+      class="chart"
+      [view]="[900, 300]"
+      [scheme]="colorScheme"
+      [results]="lineChartData"
+      [gradient]="gradient"
+      [xAxis]="true"
+      [yAxis]="true"
+      [legend]="true"
+      [showXAxisLabel]="true"
+      [showYAxisLabel]="true"
+      xAxisLabel="Time"
+      yAxisLabel="Value"
+    ></ngx-charts-line-chart>
+  
+    <!-- Pie Chart -->
+    <ngx-charts-pie-chart
+      class="chart"
+      [view]="[600, 400]"
+      [scheme]="colorScheme"
+      [results]="pieChartData"
+      [gradient]="gradient"
+      [legend]="true"
+      [doughnut]="true"
+    ></ngx-charts-pie-chart>
+  </div>
+  
+  <!-- Consumption Table -->
+  <div class="table-container">
+    <table>
+      <thead>
+        <tr>
+          <th>Category</th>
+          <th>Value</th>
+          <!-- Add more columns as needed -->
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of consumptionData">
+          <td>{{ item.category }}</td>
+          <td>{{ item.value }}</td>
+          <!-- Add more columns as needed -->
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  

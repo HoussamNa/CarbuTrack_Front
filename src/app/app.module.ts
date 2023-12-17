@@ -1,5 +1,3 @@
-// app.module.ts
-
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
@@ -14,6 +12,8 @@ import { MatListModule } from '@angular/material/list';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { HttpClientModule } from '@angular/common/http';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
 
 @NgModule({
   declarations: [
@@ -22,7 +22,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
     HomeComponent,
     AddCarComponent,
     AddConsumptionComponent,
-    SettingsComponent
+    SettingsComponent,
   ],
   imports: [
     BrowserAnimationsModule,
@@ -32,8 +32,10 @@ import { MatToolbarModule } from '@angular/material/toolbar';
     FlexLayoutModule,
     MatSidenavModule,
     MatToolbarModule,
+    HttpClientModule,
+    NgxChartsModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

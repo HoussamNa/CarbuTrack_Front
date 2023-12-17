@@ -1,60 +1,59 @@
 .sidebar {
-    background-color: #4CAF50;
-    color: #FFF;
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
-    padding-top: 100px;
-    transition: background-color 0.3s;
-  
-    mat-nav-list {
-      flex-grow: 1;
-  
-      mat-list-item {
-        cursor: pointer;
-        padding: 16px;
-        display: flex;
-        align-items: center;
-        transition: background-color 0.3s;
-        padding-top: 50px;
-        padding-bottom: 50px;
-  
+  background-color: #4CAF50;
+  color: #FFF;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  padding-top: 100px;
+  transition: background-color 0.3s;
+
+  mat-nav-list {
+    flex-grow: 1;
+
+    mat-list-item {
+      cursor: pointer;
+      padding: 16px;
+      display: flex;
+      align-items: center;
+      transition: background-color 0.3s;
+      padding-top: 50px;
+      padding-bottom: 50px;
+
+      mat-icon {
+        margin-right: 16px;
+        color: #1E1E1E;
+      }
+
+      &:hover {
+        background-color: #1E1E1E;
         mat-icon {
-          margin-right: 16px;
-          color: #1E1E1E;
-        }
-  
-        &:hover {
-          background-color: #1E1E1E;
-          mat-icon {
-            color: #4CAF50;
-          }
-        }
-  
-        &:not(:first-child) {
-          margin-top: 10px;
+          color: #4CAF50;
         }
       }
-  
-      mat-list-item:last-child {
-        order: 1;
-        margin-top: auto;
-        margin-bottom: 10px;
-  
-        mat-icon {
-          margin-right: 16px;
-        }
+
+      &:not(:first-child) {
+        margin-top: 10px;
       }
     }
-  
-    @media (max-width: 600px) {
-      width: 0;
-      overflow: hidden;
-    }
-  
-    @media (max-width: 960px) {
-      width: 0;
-      overflow: hidden;
+
+    mat-list-item:last-child {
+      order: 1;
+      margin-top: auto;
+      margin-bottom: 10px;
+
+      mat-icon {
+        margin-right: 16px;
+      }
     }
   }
-  
+
+  // Remove the width and overflow properties for smaller screens
+  @media (max-width: 600px) {
+    // Adjust styles as needed for smaller screens
+  }
+
+  // Remove the width and overflow properties for medium screens
+  @media (max-width: 960px) {
+    // Adjust styles as needed for medium screens
+  }
+}
