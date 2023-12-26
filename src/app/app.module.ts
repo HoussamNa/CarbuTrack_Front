@@ -14,6 +14,8 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { HttpClientModule } from '@angular/common/http';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { ChartModule } from 'primeng/chart';
+
 
 @NgModule({
   declarations: [
@@ -34,6 +36,7 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
     MatToolbarModule,
     HttpClientModule,
     NgxChartsModule,
+    ChartModule
   ],
   providers: [],
   bootstrap: [AppComponent],

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Color, ScaleType } from '@swimlane/ngx-charts';
 
 @Component({
@@ -6,45 +6,72 @@ import { Color, ScaleType } from '@swimlane/ngx-charts';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
 })
-export class HomeComponent {
-  // Chart data
-  lineChartData = [
-    {
-      name: 'Series 1',
-      series: [
-        { name: 'Jan', value: 20 },
-        { name: 'Feb', value: 30 },
-      ],
-    },
-  ];
+export class HomeComponent implements OnInit {
 
-  barChartData = [
-    {
-      name: 'Category 1',
-      series: [
-        { name: 'Jan', value: 10 },
-        { name: 'Feb', value: 25 },
-      ],
-    },
-  ];
+  /*  Chart level kibir !!! */
+  data: any;
+  options: any;
+  chartWidth: string = '50%'; // Set chart width to 50% of the container width
+  chartHeight: number = 300; // Adjust the height as needed
 
-  pieChartData = [
-    { name: 'A', value: 30 },
-    { name: 'B', value: 20 },
-  ];
+  ngOnInit() {
+    const documentStyle = getComputedStyle(document.documentElement);
+    const textColor = documentStyle.getPropertyValue('--text-color');
+    const textColorSecondary = documentStyle.getPropertyValue('--text-color-secondary');
+    const surfaceBorder = documentStyle.getPropertyValue('--surface-border');
 
-  // Consumption data for the table
-  consumptionData = [
-    { category: 'Gasoline', value: 50 },
-    { category: 'Diesel', value: 30 },
-  ];
+    this.data = {
+      labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+      datasets: [
+        {
+          label: 'First Dataset',
+          data: [65, 59, 80, 81, 56, 55, 40],
+          fill: false,
+          borderColor: documentStyle.getPropertyValue('--blue-500'),
+          tension: 0.4
+        },
+        {
+          label: 'Second Dataset',
+          data: [28, 48, 40, 19, 86, 27, 90],
+          fill: false,
+          borderColor: documentStyle.getPropertyValue('--pink-500'),
+          tension: 0.4
+        }
+      ]
+    };
 
-  colorScheme: Color = {
-    domain: ['#5AA454', '#A10A28', '#C7B42C', '#FFFFFF'],
-    name: 'custom',
-    selectable: true,
-    group: ScaleType.Ordinal,
-  };
+    this.options = {
+      maintainAspectRatio: false,
+      aspectRatio: 1, // Set aspect ratio to maintain the same height as specified
+      plugins: {
+        legend: {
+          labels: {
+            color: textColor
+          }
+        }
+      },
+      scales: {
+        x: {
+          ticks: {
+            color: textColorSecondary
+          },
+          grid: {
+            color: surfaceBorder,
+            drawBorder: false
+          }
+        },
+        y: {
+          ticks: {
+            color: textColorSecondary
+          },
+          grid: {
+            color: surfaceBorder,
+            drawBorder: false
+          }
+        }
+      }
+    };
+  }
 
-  gradient = false;
+  /*  Chart 2 !!! */
 }

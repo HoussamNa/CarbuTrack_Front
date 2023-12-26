@@ -7,13 +7,15 @@ import { isPlatformBrowser } from '@angular/common';
   styleUrls: ['./sidebar.component.scss'],
 })
 export class SidebarComponent implements AfterViewInit {
-  @ViewChild('sidebar') sidebar!: ElementRef;
+  @ViewChild('sidebar', { static: false }) sidebar!: ElementRef;
 
   constructor(@Inject(PLATFORM_ID) private platformId: Object) {}
 
   ngAfterViewInit(): void {
     if (isPlatformBrowser(this.platformId)) {
-      this.checkScreenSize();
+      setTimeout(() => {
+        this.checkScreenSize();
+      });
     }
   }
 
@@ -26,10 +28,14 @@ export class SidebarComponent implements AfterViewInit {
 
   private checkScreenSize(): void {
     try {
-      if (window.innerWidth < 960) {
-        this.sidebar.nativeElement.style.width = '0';
+      if (this.sidebar && this.sidebar.nativeElement) {
+        if (window.innerWidth < 960) {
+          this.sidebar.nativeElement.style.width = '0';
+        } else {
+          this.sidebar.nativeElement.style.width = '240px';
+        }
       } else {
-        this.sidebar.nativeElement.style.width = '240px';
+        console.warn('Sidebar element is not available or undefined.');
       }
     } catch (error) {
       console.error('Error checking screen size:', error);
