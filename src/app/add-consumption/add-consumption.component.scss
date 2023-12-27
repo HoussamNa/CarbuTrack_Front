@@ -70,31 +70,53 @@
         list-style: none;
         padding: 0;
         margin: 0;
-  
+
         li {
-          margin-bottom: 15px;
-          background-color: #4CAF50;
-          border-radius: 5px;
-          border: 2px solid #1E1E1E;
-          overflow: hidden;
-          display: flex;
-          flex-direction: column;
-  
-          span {
-            color: #FFF;
-            font-weight: bold;
+            background-color: #4CAF50; /* Green background */
+            border-radius: 5px;
+            border: 2px solid #1E1E1E;
             padding: 10px;
-            text-align: center;
-          }
-  
-          button {
-            background-color: #FFF;
-            color: black;
-            border: none;
-            padding: 5px 10px;
-            border-radius: 3px;
-            cursor: pointer;
-          }
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            span {
+                color: white;
+                font-weight: bold;
+            }
+
+            .button-group {
+                display: flex;
+            }
+
+            .edit-button, .delete-button {
+                padding: 5px 10px;
+                border-radius: 3px;
+                cursor: pointer;
+                font-size: 0.8em;
+                border: none;
+                margin-left: 5px;
+                transition: background-color 0.3s ease;
+            }
+
+            .edit-button {
+                background-color: #FFC107; /* Yellow for edit */
+                color: black;
+            }
+
+            .delete-button {
+                background-color: #F44336; /* Red for delete */
+                color: white;
+            }
+
+            .edit-button:hover {
+                background-color: #FFB300;
+            }
+
+            .delete-button:hover {
+                background-color: #D32F2F;
+            }
         }
       }
     }

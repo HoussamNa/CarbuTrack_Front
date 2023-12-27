@@ -1,46 +1,49 @@
 <div class="add-car-container">
-    <div class="form-container">
-      <form>
-        <h2>Ajouter une voiture</h2>
-  
-        <div class="form-group">
-          <label for="marque">Marque:</label>
-          <input type="text" id="marque" name="marque" required>
-        </div>
-  
-        <div class="form-group">
-          <label for="model">Modèle:</label>
-          <input type="text" id="model" name="model" required>
-        </div>
-  
-        <div class="form-group">
-          <label for="immatriculation">Immatriculation:</label>
-          <input type="text" id="immatriculation" name="immatriculation" required>
-        </div>
-  
-        <div class="form-group">
-          <label for="annee">Année:</label>
-          <input type="number" id="annee" name="annee" required>
-        </div>
-  
-        <div class="form-group">
-          <label for="carImage">Image du véhicule:</label>
-          <input type="file" id="carImage" name="carImage" accept="image/*" required>
-        </div>
-  
-        <button type="submit">Submit</button>
-      </form>
-    </div>
-  
-    <div class="list-container">
-      <h2>Liste des véhicules</h2>
-      <!-- Add your list content here -->
+  <!-- Car List Container -->
+  <div class="car-list-container">
+      <h2>List of Cars</h2>
       <ul>
-        <li>Véhicule 1</li>
-        <li>Véhicule 2</li>
-        <li>Véhicule 3</li>
-        <!-- Add more list items as needed -->
+          <li *ngFor="let car of cars | slice:(currentPage - 1) * itemsPerPage : currentPage * itemsPerPage">
+              <div class="car-details">
+                  <div class="car-image">
+                      <img [src]="car.carImage" alt="Car Image">
+                  </div>
+                  <div class="car-info">
+                      <span class="car-immatriculation">{{ car.immatriculation }}</span>
+                      <span class="car-year">{{ car.annee }}</span>
+                  </div>
+              </div>
+              <div class="button-group">
+                  <button class="edit-button" (click)="editCar(car)">Edit</button>
+                  <button class="delete-button" (click)="deleteCar(car)">Delete</button>
+              </div>
+          </li>
       </ul>
-    </div>
+
+      <div class="pagination">
+          <button *ngFor="let page of getPaginationArray()" (click)="onPageChange(page)" [class.active]="currentPage === page">
+              {{ page }}
+          </button>
+      </div>
   </div>
-  
+
+  <!-- Add Car Form -->
+  <div class="form-container">
+      <form (submit)="addCar(newCar)">
+          <h2>Add a Car</h2>
+          <div class="form-group">
+              <label for="immatriculation">Immatriculation:</label>
+              <input type="text" id="immatriculation" name="immatriculation" [(ngModel)]="newCar.immatriculation" required>
+          </div>
+          <div class="form-group">
+              <label for="annee">Year:</label>
+              <input type="number" id="annee" name="annee" [(ngModel)]="newCar.annee" required>
+          </div>
+          <div class="form-group">
+              <label for="carImage">Image:</label>
+              <input type="file" id="carImage" name="carImage" accept="image/*" (change)="handleFileInput($event)">
+          </div>
+          <button type="submit">Submit</button>
+      </form>
+  </div>
+</div>
