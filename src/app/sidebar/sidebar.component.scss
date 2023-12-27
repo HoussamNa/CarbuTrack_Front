@@ -1,11 +1,17 @@
+/* Sidebar Styles */
 .sidebar {
   background-color: #4CAF50;
   color: #FFF;
   display: flex;
   flex-direction: column;
-  height: 100vh;
   padding-top: 100px;
   transition: background-color 0.3s;
+  width: 75px; /* Set your desired width here */
+  position: fixed; /* Make the sidebar fixed */
+  top: 0; /* Stick it to the top */
+  left: 0; /* Stick it to the left */
+  height: 100%; /* Make it 100% height of the viewport */
+
 
   mat-nav-list {
     flex-grow: 1;

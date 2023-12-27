@@ -15,7 +15,10 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { HttpClientModule } from '@angular/common/http';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { ChartModule } from 'primeng/chart';
-
+import { Chart1Component } from './chart1/chart1.component';
+import { Chart2Component } from './chart2/chart2.component';
+import { Chart3Component } from './chart3/chart3.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -25,10 +28,13 @@ import { ChartModule } from 'primeng/chart';
     AddCarComponent,
     AddConsumptionComponent,
     SettingsComponent,
+    Chart1Component,
+    Chart2Component,
+    Chart3Component,
   ],
   imports: [
     BrowserAnimationsModule,
-    AppRoutingModule,
+    AppRoutingModule, // Make sure your routes are properly defined in AppRoutingModule
     MatIconModule,
     MatListModule,
     FlexLayoutModule,
@@ -36,7 +42,8 @@ import { ChartModule } from 'primeng/chart';
     MatToolbarModule,
     HttpClientModule,
     NgxChartsModule,
-    ChartModule
+    ChartModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent],

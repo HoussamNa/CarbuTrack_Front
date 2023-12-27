@@ -1,60 +1,24 @@
-.dashboard-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-  }
-  
-  .chart {
-    color: #fff;
-    border-radius: 8px;
-    margin-bottom: 20px;
-  }
-  
-  // Override ngx-charts chart background
-  .ngx-charts-chart {
-    background-color: transparent !important;
-  }
-  
-  ngx-charts-line-chart,
-  ngx-charts-bar-vertical,
-  ngx-charts-pie-chart {
-    .chart-text {
-      fill: white; // or #FFFFFF
-    }
-  }
-  
-  .table-container {
-    margin-top: 20px; // Margin between charts and table
-  }
-  
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 10px; // Margin for the table
-    color: white; // Set table text color to white
-  
-    th, td {
-      padding: 10px;
-      text-align: left;
-      border: 1px solid #ddd;
-    }
-  }
-  
-  // Responsive design for smaller screens
-  @media (max-width: 768px) {
-    .dashboard-container {
-      flex-direction: column;
-    }
-  
-    .chart {
-      width: 100%; // Full width on smaller screens
-      margin-bottom: 15px;
-    }
-  
-    .table-container {
-      width: 100%;
-    }
-  }
-  
-  // Add any additional styles as needed
-  
+/* Container for the sidebar and charts */
+.container {
+  display: flex;
+  flex-direction: column; /* Ensure charts are stacked vertically */
+  position: relative;
+}
+
+/* Chart 1 Container Styles */
+.chart1-container {
+  flex: 1; /* Take 100% height of the remaining space */
+  width: 40%; /* Take 100% of the page width */
+  position: relative;
+  padding: 20px;
+}
+
+/* Chart 2 Container Styles */
+.chart2-container {
+  flex: 0.5; /* Take 50% height of the remaining space */
+  width: 100%; /* Take 100% of the page width */
+  position: relative;
+  padding: 20px;
+  height: 50%; /* Adjust the height to be 50% of the container height */
+}
+

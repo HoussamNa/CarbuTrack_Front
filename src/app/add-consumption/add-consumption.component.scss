@@ -1,0 +1,141 @@
+.add-csm-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Align the items at the top */
+    padding: 20px;
+  
+    .form-container {
+      width: 60%;
+      max-width: 600px;
+      box-sizing: border-box;
+      border: 2px solid #4CAF50;
+      border-radius: 10px;
+      padding: 30px;
+      margin-top: 20px;
+      margin-right: 20px; /* Add margin-right to create space for the list */
+  
+      h2 {
+        text-align: center;
+        color: #4CAF50;
+        margin-bottom: 20px;
+      }
+  
+      .form-group {
+        margin-bottom: 20px;
+  
+        label {
+          display: block;
+          margin-bottom: 5px;
+          color: #4CAF50;
+        }
+  
+        input {
+          width: 100%;
+          padding: 12px;
+          box-sizing: border-box;
+          border: 1px solid #ccc;
+          border-radius: 5px;
+        }
+      }
+  
+      button {
+        background-color: #4CAF50;
+        color: #fff;
+        padding: 12px;
+        cursor: pointer;
+        border: none;
+        border-radius: 5px;
+        width: 100%;
+      }
+    }
+  
+    .list-container {
+      width: 40%;
+      padding: 20px;
+      background-color: #FFF; /* Change the background color to white */
+      color: #1E1E1E; /* Change the text color to dark */
+      padding-bottom: 20px;
+      border: 2px solid #4CAF50;
+      border-radius: 10px; /* Add border radius to the frame */
+  
+      h2 {
+        padding-bottom: 20px;
+        color: #4CAF50;
+        font-size: 2.5em;
+        text-align: center;
+        margin-bottom: 0px;
+      }
+  
+      ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+  
+        li {
+          margin-bottom: 15px;
+          background-color: #4CAF50;
+          border-radius: 5px;
+          border: 2px solid #1E1E1E;
+          overflow: hidden;
+          display: flex;
+          flex-direction: column;
+  
+          span {
+            color: #FFF;
+            font-weight: bold;
+            padding: 10px;
+            text-align: center;
+          }
+  
+          button {
+            background-color: #FFF;
+            color: black;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 3px;
+            cursor: pointer;
+          }
+        }
+      }
+    }
+  
+    .pagination {
+      display: flex;
+      justify-content: center;
+      margin-top: 20px;
+    }
+  
+    .pagination-button {
+        background-color: #4CAF50;
+        color: #fff;
+        padding: 8px 16px; /* Adjust padding as needed */
+        border: 2px solid #4CAF50; /* Add a border */
+        border-radius: 3px;
+        cursor: pointer;
+        margin: 0 5px;
+        transition: background-color 0.3s ease;
+      
+        &:hover {
+          background-color: #45a049;
+        }
+      
+        &.active {
+          background-color: #45a049;
+          border-color: #45a049; /* Change border color for active button */
+        }
+      }
+      
+  }
+  
+  @media (max-width: 768px) {
+    .add-csm-container {
+      flex-direction: column;
+  
+      .form-container,
+      .list-container {
+        width: 100%;
+        margin-right: 0;
+      }
+    }
+  }
+  
