@@ -8,20 +8,13 @@ import { Component } from '@angular/core';
 export class RegistrationComponent {
   email: string = '';
   password: string = '';
+  username: string = '';
+  confirmPassword: string = ''; 
 
   constructor() {}
 
   register() {
-    const hardcodedEmail = 'houssam';       // Hardcoded email for registration
-    const hardcodedPassword = 'houssam';   // Hardcoded password for registration
-  
-    if (this.email === hardcodedEmail && this.password === hardcodedPassword) {
-      // User with the same credentials already exists, show an error message or handle accordingly
-      console.log('User with the same credentials already exists.');
-    } else {
-      // Registration successful, you can add the new user or redirect to another page
-      console.log('Registration successful');
-    }
+    
   }
   
 

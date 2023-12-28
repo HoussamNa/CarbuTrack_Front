@@ -1,12 +1,18 @@
 <div class="login-container">
     <img loading="lazy" srcset="https://cdn.builder.io/api/v1/image/assets/TEMP/74bcbd76bc922fa06582d35cf62498300e31788431a4dabadcdeabd5c3586ec8?apiKey=68351ece0ff9473aba513224bb2a49a4&width=100 100w, https://cdn.builder.io/api/v1/image/assets/TEMP/74bcbd76bc922fa06582d35cf62498300e31788431a4dabadcdeabd5c3586ec8?apiKey=68351ece0ff9473aba513224bb2a49a4&width=200 200w, https://cdn.builder.io/api/v1/image/assets/TEMP/74bcbd76bc922fa06582d35cf62498300e31788431a4dabadcdeabd5c3586ec8?apiKey=68351ece0ff9473aba513224bb2a49a4&width=400 400w, https://cdn.builder.io/api/v1/image/assets/TEMP/74bcbd76bc922fa06582d35cf62498300e31788431a4dabadcdeabd5c3586ec8?apiKey=68351ece0ff9473aba513224bb2a49a4&width=800 800w, https://cdn.builder.io/api/v1/image/assets/TEMP/74bcbd76bc922fa06582d35cf62498300e31788431a4dabadcdeabd5c3586ec8?apiKey=68351ece0ff9473aba513224bb2a49a4&width=1200 1200w, https://cdn.builder.io/api/v1/image/assets/TEMP/74bcbd76bc922fa06582d35cf62498300e31788431a4dabadcdeabd5c3586ec8?apiKey=68351ece0ff9473aba513224bb2a49a4&width=1600 1600w, https://cdn.builder.io/api/v1/image/assets/TEMP/74bcbd76bc922fa06582d35cf62498300e31788431a4dabadcdeabd5c3586ec8?apiKey=68351ece0ff9473aba513224bb2a49a4&width=2000 2000w, https://cdn.builder.io/api/v1/image/assets/TEMP/74bcbd76bc922fa06582d35cf62498300e31788431a4dabadcdeabd5c3586ec8?apiKey=68351ece0ff9473aba513224bb2a49a4&" class="img" />
     <div class="login-text">Register</div>
+    <div class="username-label">Username</div>
+    <!-- Add input field for username -->
+    <input type="text" class="username-input" placeholder="Enter your username" [(ngModel)]="username">
     <div class="email-label">Email Address</div>
     <!-- Add input field for email -->
     <input type="email" class="email-input" placeholder="Enter your email" [(ngModel)]="email">
     <div class="password-label">Password</div>
     <!-- Add input field for password -->
     <input type="password" class="password-input" placeholder="Enter your password" [(ngModel)]="password">
-    <div class="login-btn" (click)="register()">Register</div>
+    <div class="confirm-password-label">Confirm Password</div>
+    <!-- Add input field to confirm password -->
+    <input type="password" class="confirm-password-input" placeholder="Confirm your password" [(ngModel)]="confirmPassword">
+    <div class="register-btn" (click)="register()">Register</div>
     <div class="register-text">Already have an account? <a href="#" (click)="navigateToLogin()">Login</a></div>
 </div>
