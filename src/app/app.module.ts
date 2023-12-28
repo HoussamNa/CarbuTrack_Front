@@ -3,6 +3,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
+import { HeaderComponent } from './header/header.component';
 import { HomeComponent } from './home/home.component';
 import { AddCarComponent } from './add-car/add-car.component';
 import { AddConsumptionComponent } from './add-consumption/add-consumption.component';
@@ -19,11 +20,18 @@ import { Chart1Component } from './chart1/chart1.component';
 import { Chart2Component } from './chart2/chart2.component';
 import { Chart3Component } from './chart3/chart3.component';
 import { FormsModule } from '@angular/forms';
+import { DeleteConfirmationComponent } from './delete-confirmation/delete-confirmation.component';
+import { ToastModule } from 'primeng/toast';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { ButtonModule } from 'primeng/button';
+import { LoginComponent } from './login/login.component';
+import { RegistrationComponent } from './registration/registration.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SidebarComponent,
+    HeaderComponent,
     HomeComponent,
     AddCarComponent,
     AddConsumptionComponent,
@@ -31,10 +39,13 @@ import { FormsModule } from '@angular/forms';
     Chart1Component,
     Chart2Component,
     Chart3Component,
+    DeleteConfirmationComponent,
+    LoginComponent,
+    RegistrationComponent,
   ],
   imports: [
     BrowserAnimationsModule,
-    AppRoutingModule, // Make sure your routes are properly defined in AppRoutingModule
+    AppRoutingModule,
     MatIconModule,
     MatListModule,
     FlexLayoutModule,
@@ -43,7 +54,12 @@ import { FormsModule } from '@angular/forms';
     HttpClientModule,
     NgxChartsModule,
     ChartModule,
-    FormsModule
+    FormsModule,
+    ToastModule,
+    ConfirmDialogModule,
+    ButtonModule,
+    FormsModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent],

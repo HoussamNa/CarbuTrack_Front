@@ -1,0 +1,51 @@
+/* login.component.css */
+
+.login-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #D7FEF1;
+    margin-top: 20px;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.login-text {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.email-label,
+.password-label {
+    margin-top: 10px;
+    font-size: 16px;
+    color: #072a4f; /* Text color */
+}
+
+/* Style the input fields */
+.email-input,
+.password-input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #072a4f; /* Border color */
+    border-radius: 5px;
+    font-size: 16px;
+    margin-top: 5px;
+    background-color: #D7FEF1; /* Background color for input fields */
+}
+
+.logo-img {
+    width: 10px;
+    margin-top: 20px;
+}
+
+.login-btn {
+    background-color: #279574;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 18px;
+    margin-top: 20px;
+}
