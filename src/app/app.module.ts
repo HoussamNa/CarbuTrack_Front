@@ -58,8 +58,7 @@ import { RegistrationComponent } from './registration/registration.component';
     ToastModule,
     ConfirmDialogModule,
     ButtonModule,
-    FormsModule,
-    AppRoutingModule
+    AppRoutingModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
