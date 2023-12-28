@@ -4,7 +4,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: #D7FEF1;
+    background-color: #FFFF;
     margin-top: 20px;
     padding: 20px;
     border-radius: 10px;
@@ -13,6 +13,7 @@
 .login-text {
     font-size: 24px;
     font-weight: bold;
+    color: #279574;
 }
 
 .email-label,
@@ -32,6 +33,22 @@
     font-size: 16px;
     margin-top: 5px;
     background-color: #D7FEF1; /* Background color for input fields */
+}
+.register-text {
+    font-size: 16px;
+    margin-top: 10px;
+    color: #072a4f; /* Text color for the "Don’t have an account?" text */
+}
+
+.register-text a {
+    color: #279574; /* Text color for the link (change to your preferred color) */
+    text-decoration: none; /* Remove underlines from the link */
+    font-weight: bold; /* Make the link bold (optional) */
+    transition: color 0.2s; /* Add a smooth color transition on hover (optional) */
+}
+
+.register-text a:hover {
+    color: #176a4c; /* Change the link color on hover (optional) */
 }
 
 .logo-img {
