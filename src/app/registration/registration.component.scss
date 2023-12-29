@@ -1,74 +1,69 @@
-/* login.component.css */
-
-.login-container {
+/* Base container and card styles */
+.card-container {
     display: flex;
-    flex-direction: column;
+    justify-content: center;
     align-items: center;
-    background-color: #ffff;
-    margin-top: 20px;
-    padding: 20px;
+    background-color: #fff;
+}
+.card {
+    width: 300px; /* Reduced width */
+    background-color: #fff;
+    padding: 15px; /* Adjusted padding */
     border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+/* Common styles for headings, labels, and links */
+.login-text, .register-text {
+    font-size: 14px; /* Adjusted font size */
+    font-weight: bold;
+    color: black;
+    margin-bottom: 15px; /* Adjusted margin */
+}
+.email-label, .password-label, .username-label, .confirm-password-label {
+    margin-top: 8px; /* Adjusted margin */
+    font-size: 14px; /* Adjusted font size */
+    color: #072a4f;
+}
+.login-text a, .register-text a {
+    color: #279574;
+    text-decoration: none;
+    font-weight: bold;
+}
+.login-text a:hover, .register-text a:hover {
     color: #176a4c;
 }
 
-.login-text {
-    font-size: 24px;
-    font-weight: bold;
-}
-
-.username-label,
-.email-label,
-.password-label,
-.confirm-password-label {
-    margin-top: 10px;
-    font-size: 16px;
-    color: #072a4f; /* Text color */
-}
-
-/* Style the input fields */
-.username-input,
-.email-input,
-.password-input,
-.confirm-password-input {
+/* Input and button styles */
+input[type=email], input[type=password], input[type=text] {
     width: 100%;
-    padding: 10px;
-    border: 1px solid #072a4f; /* Border color */
+    padding: 8px; /* Adjusted padding */
+    border: 1px solid #072a4f;
     border-radius: 5px;
-    font-size: 16px;
+    font-size: 14px; /* Adjusted font size */
     margin-top: 5px;
-    background-color: #D7FEF1; /* Background color for input fields */
+    background-color: #D7FEF1;
 }
-
-.login-btn,
-.register-btn {
+.login-btn, .register-btn {
     background-color: #279574;
     color: white;
-    padding: 10px 20px;
-    border: none;
+    padding: 8px 16px; /* Adjusted padding */
     border-radius: 5px;
     cursor: pointer;
-    font-size: 18px;
-    margin-top: 20px;
+    font-size: 16px; /* Adjusted font size */
+    margin-top: 15px; /* Adjusted margin */
+}
+.login-btn:hover, .register-btn:hover {
+    background-color: #176a4c;
 }
 
-.login-btn:hover,
-.register-btn:hover {
-    background-color: #176a4c; /* Change button color on hover (optional) */
+/* Image container and image styles */
+.img-container {
+    text-align: center;
+    margin-bottom: 15px; /* Adjusted margin */
 }
-
-.register-text {
-    font-size: 16px;
-    margin-top: 10px;
-    color: #072a4f; /* Text color for the "Already have an account?" text */
-}
-
-.register-text a {
-    color: #279574; /* Text color for the "Login" link */
-    text-decoration: none; /* Remove underlines from the link */
-    font-weight: bold; /* Make the link bold (optional) */
-    transition: color 0.2s; /* Add a smooth color transition on hover (optional) */
-}
-
-.register-text a:hover {
-    color: #176a4c; /* Change the link color on hover (optional) */
+.img {
+    max-width: 100%;
+    height: auto;
 }
