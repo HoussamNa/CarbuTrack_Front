@@ -1,68 +1,80 @@
-/* login.component.css */
+/* Container for the card */
+        .card-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #ffff; /* Background color for the entire page */
+        }
 
-.login-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-color: #FFFF;
-    margin-top: 20px;
-    padding: 20px;
-    border-radius: 10px;
-}
+        /* Card styles */
+        .card {
+            width: 400px;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
 
-.login-text {
-    font-size: 24px;
-    font-weight: bold;
-    color: #279574;
-}
+        /* Your existing styles for the login form */
+        .login-text {
+            font-size: 24px;
+            font-weight: bold;
+            color: #279574;
+        }
 
-.email-label,
-.password-label {
-    margin-top: 10px;
-    font-size: 16px;
-    color: #072a4f; /* Text color */
-}
+        .email-label,
+        .password-label {
+            margin-top: 10px;
+            font-size: 16px;
+            color: #072a4f;
+        }
 
-/* Style the input fields */
-.email-input,
-.password-input {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #072a4f; /* Border color */
-    border-radius: 5px;
-    font-size: 16px;
-    margin-top: 5px;
-    background-color: #D7FEF1; /* Background color for input fields */
-}
-.register-text {
-    font-size: 16px;
-    margin-top: 10px;
-    color: #072a4f; /* Text color for the "Don’t have an account?" text */
-}
+        .email-input,
+        .password-input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #072a4f;
+            border-radius: 5px;
+            font-size: 16px;
+            margin-top: 5px;
+            background-color: #D7FEF1;
+        }
 
-.register-text a {
-    color: #279574; /* Text color for the link (change to your preferred color) */
-    text-decoration: none; /* Remove underlines from the link */
-    font-weight: bold; /* Make the link bold (optional) */
-    transition: color 0.2s; /* Add a smooth color transition on hover (optional) */
-}
+        .register-text {
+            font-size: 16px;
+            margin-top: 10px;
+            color: #072a4f;
+        }
 
-.register-text a:hover {
-    color: #176a4c; /* Change the link color on hover (optional) */
-}
+        .register-text a {
+            color: #279574;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.2s;
+        }
 
-.logo-img {
-    width: 10px;
-    margin-top: 20px;
-}
+        .register-text a:hover {
+            color: #176a4c;
+        }
 
-.login-btn {
-    background-color: #279574;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 18px;
-    margin-top: 20px;
-}
+        .login-btn {
+            background-color: #279574;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 18px;
+            margin-top: 20px;
+        }
+
+        /* Additional styles for the image */
+        .img-container {
+            text-align: center;
+        }
+
+        .img {
+            max-width: 100%;
+            height: auto;
+        }
