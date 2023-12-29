@@ -10,7 +10,7 @@ export class AddCarComponent implements OnInit {
   newCar: Car = { immatriculation: '', annee: 0, carImage: '' };
   cars: Car[] = [];
   currentPage = 1;
-  itemsPerPage = 10;
+  itemsPerPage = 5;
 
   constructor(private carService: CarService) {}
 

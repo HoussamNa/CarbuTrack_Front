@@ -7,6 +7,7 @@ export interface Car {
   carImage: string; // Assumes this will be a data URL or path to the image
 }
 
+
 @Injectable({
   providedIn: 'root'
 })
