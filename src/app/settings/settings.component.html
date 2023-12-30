@@ -1,40 +1,40 @@
 <app-sidebar></app-sidebar>
 <div class="settings-container">
-    <h2>Paramètres du Compte</h2>
-    <form class="settings-form">
-        <!-- Section Informations Utilisateur -->
+    <h2>Account Settings</h2>
+    <form class="settings-form" (ngSubmit)="updateSettings()">
+        <!-- User Information Section -->
         <fieldset>
-            <legend>Informations Personnelles</legend>
+            <legend>Personal Information</legend>
             <div class="form-group">
-                <label for="username">Nom d'utilisateur:</label>
-                <input type="text" id="username" name="username" required>
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" [(ngModel)]="userData.username" required>
             </div>
 
             <div class="form-group">
-                <label for="email">E-mail:</label>
-                <input type="email" id="email" name="email" required>
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" [(ngModel)]="userData.email" required>
             </div>
         </fieldset>
 
-        <!-- Section Mise à Jour du Mot de Passe -->
+        <!-- Password Update Section -->
         <fieldset>
-            <legend>Changer le Mot de Passe</legend>
+            <legend>Change Password</legend>
             <div class="form-group">
-                <label for="current-password">Mot de Passe Actuel:</label>
-                <input type="password" id="current-password" name="current-password" required>
+                <label for="current-password">Current Password:</label>
+                <input type="password" id="current-password" name="current-password" [(ngModel)]="userData.currentPassword" required>
             </div>
 
             <div class="form-group">
-                <label for="new-password">Nouveau Mot de Passe:</label>
-                <input type="password" id="new-password" name="new-password" required>
+                <label for="new-password">New Password:</label>
+                <input type="password" id="new-password" name="new-password" [(ngModel)]="userData.newPassword" required>
             </div>
 
             <div class="form-group">
-                <label for="confirm-password">Confirmer le Nouveau Mot de Passe:</label>
-                <input type="password" id="confirm-password" name="confirm-password" required>
+                <label for="confirm-password">Confirm New Password:</label>
+                <input type="password" id="confirm-password" name="confirm-password" [(ngModel)]="userData.confirmPassword" required>
             </div>
         </fieldset>
 
-        <button type="submit" class="submit-btn">Mettre à Jour</button>
+        <button type="submit" class="submit-btn">Update</button>
     </form>
 </div>
