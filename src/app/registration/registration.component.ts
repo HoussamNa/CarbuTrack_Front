@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { RegistrationService } from '../registration.service';
 
 @Component({
   selector: 'app-registration',
@@ -6,20 +7,23 @@ import { Component } from '@angular/core';
   styleUrls: ['./registration.component.scss'],
 })
 export class RegistrationComponent {
-  email: string = '';
-  password: string = '';
-  username: string = '';
-  confirmPassword: string = ''; 
+  user: any = {
+    username: '',
+    email: '',
+    password: '',
+    isEntreprise: false,
+  };
 
-  constructor() {}
+  constructor(private registrationService: RegistrationService) {}
 
-  register() {
-    
-  }
-  
-
-  navigateToLogin() {
-    // Implement navigation to the login page
-    console.log('Navigate to login page');
+  registerUser(): void {
+    this.registrationService.register(this.user).subscribe(
+      (response) => {
+        console.log('Registration successful', response);
+      },
+      (error) => {
+        console.error('Registration failed', error);
+      }
+    );
   }
 }

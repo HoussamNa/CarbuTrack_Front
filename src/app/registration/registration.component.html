@@ -4,15 +4,24 @@
             <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/74bcbd76bc922fa06582d35cf62498300e31788431a4dabadcdeabd5c3586ec8?apiKey=68351ece0ff9473aba513224bb2a49a4&width=400" class="img" />
         </div>
         <div class="register-text">Register</div>
-        <div class="username-label">Username</div>
-        <input type="text" class="username-input" placeholder="Enter your username">
-        <div class="email-label">Email Address</div>
-        <input type="email" class="email-input" placeholder="Enter your email">
-        <div class="password-label">Password</div>
-        <input type="password" class="password-input" placeholder="Enter your password">
-        <div class="confirm-password-label">Confirm Password</div>
-        <input type="password" class="confirm-password-input" placeholder="Confirm your password">
-        <div class="register-btn">Register</div>
-        <div class="login-text">Already have an account? <a href="#">Login</a></div>
-    </div>
-</div>
+        <div class="form-group">
+            <label for="username">Username</label>
+            <input [(ngModel)]="user.username" type="text" id="username" class="username-input" placeholder="Enter your username">
+          </div>
+          <div class="form-group">
+            <label for="email">Email Address</label>
+            <input [(ngModel)]="user.email" type="email" id="email" class="email-input" placeholder="Enter your email">
+          </div>
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input [(ngModel)]="user.password" type="password" id="password" class="password-input" placeholder="Enter your password">
+          </div>
+          <div class="form-group">
+            <label for="enterprise">Entreprise</label>
+            <input [(ngModel)]="user.isEntreprise" type="checkbox" id="enterprise" class="enterprise-checkbox">
+          </div>
+      
+          <div class="register-btn" (click)="registerUser()">Register</div>
+          <div class="login-text">Already have an account? <a href="#">Login</a></div>
+        </div>
+      </div>
