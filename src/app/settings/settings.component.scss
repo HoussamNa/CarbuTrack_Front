@@ -3,7 +3,7 @@
     margin: 40px auto;
     padding: 20px;
     background: #ffff;
-    color: #FFF; // Text color for better readability on dark background
+    color: black; // Text color for better readability on dark background
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
     border-radius: 8px;
 
@@ -45,7 +45,7 @@
                 border-radius: 4px;
                 border: 1px solid #333;
                 background: #ffff; // Slightly lighter background for inputs
-                color: #FFF; // Text color for inputs
+                color: black; // Text color for inputs
                 font-size: 16px;
             }
         }
