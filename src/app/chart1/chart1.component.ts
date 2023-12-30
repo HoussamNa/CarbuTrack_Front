@@ -28,14 +28,14 @@ export class Chart1Component implements OnInit {
         labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
         datasets: [
           {
-            label: 'First Dataset',
+            label: 'Maybach',
             data: [65, 59, 80, 81, 56, 55, 40],
             fill: false,
             borderColor: '#4CAF50', // Set the color to #4CAF50
             tension: 0.4
           },
           {
-            label: 'Second Dataset',
+            label: 'Maserati',
             data: [28, 48, 40, 19, 86, 27, 90],
             fill: false,
             borderColor: documentStyle.getPropertyValue('--blue-500'), // Keep this if needed
