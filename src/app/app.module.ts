@@ -27,6 +27,8 @@ import { ButtonModule } from 'primeng/button';
 import { LoginComponent } from './login/login.component';
 import { RegistrationComponent } from './registration/registration.component';
 
+import { AuthModule } from '@auth0/auth0-angular';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -59,6 +61,13 @@ import { RegistrationComponent } from './registration/registration.component';
     ConfirmDialogModule,
     ButtonModule,
     AppRoutingModule,
+    // AuthModule.forRoot({
+    //   domain: 'dev-m6ufepys0ol5g70y.us.auth0.com',
+    //   clientId: 'cQJjvXG4HAEt1DgK1VrMIxNfbGvoUL4p',
+    //   authorizationParams: {
+    //     redirect_uri: window.location.origin
+    //   }
+    // }),
   ],
   providers: [],
   bootstrap: [AppComponent],
