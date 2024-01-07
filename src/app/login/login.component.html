@@ -10,7 +10,7 @@
       <input type="password" class="password-input" placeholder="Enter your password" [(ngModel)]="password">
       <div *ngIf="error" class="error-message">La connexion a échoué. Veuillez vérifier vos informations.</div>
       <div class="login-btn" (click)="login()">Login</div>
-      <div class="register-text">Don’t have an account? <a href="#" (click)="navigateToRegistration()">Register</a></div>
+      <div class="register-text">Don’t have an account? <a href="/register" >Register</a></div>
     </div>
   </div>
   

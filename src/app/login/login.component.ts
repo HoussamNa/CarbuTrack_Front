@@ -29,8 +29,8 @@ export class LoginComponent {
   }
 
   navigateToRegistration() {
-    // Implement navigation to the registration page
-    console.log('Navigate to registration page');
+    // Navigate to the registration page
+    this.router.navigate(['/register']);
   }
 }
 // export class LoginComponent {
