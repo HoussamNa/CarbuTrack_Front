@@ -3,8 +3,11 @@
   <!-- Car List Container -->
   <div class="car-list-container">
       <h2>List of Cars</h2>
+      <input type="search"[(ngModel)]="searchtext" id="search"class="form-search"placeholder="Search">
+
+
       <ul>
-          <li *ngFor="let car of cars | slice:(currentPage - 1) * itemsPerPage : currentPage * itemsPerPage">
+          <li *ngFor="let car of cars | slice:(currentPage - 1) * itemsPerPage : currentPage * itemsPerPage|filter:searchtext">
               <div class="car-details">
                   <div class="car-image">
                       <img [src]="car.carImage" alt="Car Image">

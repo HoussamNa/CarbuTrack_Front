@@ -1,60 +1,77 @@
 <app-sidebar></app-sidebar>
 <div class="add-csm-container">
-  <!-- Add Consumption Form -->
-  <div class="form-container" *ngIf="!showEditForm">
-      <form (submit)="addConsumption(newConsumption)">
-          <h2>Add a Consumption</h2>
-          <div class="form-group">
-              <label for="quantity">Quantity:</label>
-              <input type="number" id="quantity" name="quantity" [(ngModel)]="newConsumption.quantity" required>
-          </div>
-          <div class="form-group">
-              <label for="cost">Cost:</label>
-              <input type="number" id="cost" name="cost" [(ngModel)]="newConsumption.cost" required>
-          </div>
-          <div class="form-group">
-              <label for="date">Date:</label>
-              <input type="date" id="date" name="date" [(ngModel)]="newConsumption.date" required>
-          </div>
-          <button type="submit">Submit</button>
-      </form>
-  </div>
-
-  <!-- Edit Consumption Form -->
-  <div class="form-container" *ngIf="showEditForm">
-      <h2>Edit Consumption</h2>
-      <div class="form-group">
-          <label for="edit-quantity">Quantity:</label>
-          <input type="number" id="edit-quantity" name="edit-quantity" [(ngModel)]="editedConsumption.quantity" required>
-      </div>
-      <div class="form-group">
-          <label for="edit-cost">Cost:</label>
-          <input type="number" id="edit-cost" name="edit-cost" [(ngModel)]="editedConsumption.cost" required>
-      </div>
-      <div class="form-group">
-          <label for="edit-date">Date:</label>
-          <input type="date" id="edit-date" name="edit-date" [(ngModel)]="editedConsumption.date" required>
-      </div>
-      <button (click)="updateConsumption()">Update</button>
-      <button (click)="cancelEdit()">Cancel</button>
-  </div>
-
-  <!-- List Container -->
-  <div class="list-container">
-    <h2>List of Consumptions</h2>
-    <ul>
-        <li *ngFor="let consumption of consumptions.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage)">
-            <span>{{ consumption.quantity }} - {{ consumption.cost }} - {{ consumption.date }}</span>
-            <div class="button-group">
-                <button class="edit-button" (click)="editConsumption(consumption)">Edit</button>
-                <button class="delete-button" (click)="deleteConsumption(consumption)">Delete</button>
+    <!-- Add Consumption Form -->
+    <div class="form-container" *ngIf="!showEditForm">
+        <form (submit)="addConsumption(newConsumption)">
+            <h2>Add a Consumption</h2>
+            <div class="form-group">
+                <label for="quantity">Quantity:</label>
+                <input type="number" id="quantity" name="quantity" [(ngModel)]="newConsumption.quantity" required>
             </div>
-        </li>
-    </ul>
-      <div class="pagination">
-          <button *ngFor="let page of getPaginationArray()" (click)="onPageChange(page)" [class.active]="currentPage === page">
-              {{ page }}
-          </button>
+            <div class="form-group">
+                <label for="cost">Cost:</label>
+                <input type="number" id="cost" name="cost" [(ngModel)]="newConsumption.cost" required>
+            </div>
+       
+        <div class="form-group">
+          <label for="car">Car:</label>
+          <select>
+              <option value="C3">C3</option>
+              <option value="Passat">Passat</option>
+              <option value="C220">C220</option>
+            </select>
       </div>
-  </div>
+            <div class="form-group">
+                <label for="date">Date:</label>
+                <input type="date" id="date" name="date" [(ngModel)]="newConsumption.date" required>
+            </div>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+
+    <!-- Edit Consumption Form -->
+    <div class="form-container" *ngIf="showEditForm">
+        <h2>Edit Consumption</h2>
+        <div class="form-group">
+            <label for="edit-quantity">Quantity:</label>
+            <input type="number" id="edit-quantity" name="edit-quantity" [(ngModel)]="editedConsumption.quantity" required>
+        </div>
+        <div class="form-group">
+            <label for="edit-cost">Cost:</label>
+            <input type="number" id="edit-cost" name="edit-cost" [(ngModel)]="editedConsumption.cost" required>
+        </div>
+        <div class="form-group">
+            <label for="car">Car:</label>
+            <select>
+                <option value="C3">C3</option>
+                <option value="Passat">Passat</option>
+                <option value="C220">C220</option>
+              </select>
+        </div>
+        <div class="form-group">
+            <label for="edit-date">Date:</label>
+            <input type="date" id="edit-date" name="edit-date" [(ngModel)]="editedConsumption.date" required>
+        </div>
+        <button (click)="updateConsumption()">Update</button>
+        <button (click)="cancelEdit()">Cancel</button>
+    </div>
+
+    <!-- List Container -->
+    <div class="list-container">
+        <h2>List of Consumptions</h2>
+        <ul>
+            <li *ngFor="let consumption of consumptions.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage)">
+                <span>{{ consumption.quantity }} - {{ consumption.cost }} - {{ consumption.date }}</span>
+                <div class="button-group">
+                    <button class="edit-button" (click)="editConsumption(consumption)">Edit</button>
+                    <button class="delete-button" (click)="deleteConsumption(consumption)">Delete</button>
+                </div>
+            </li>
+        </ul>
+        <div class="pagination">
+            <button *ngFor="let page of getPaginationArray()" (click)="onPageChange(page)" [class.active]="currentPage === page">
+                {{ page }}
+            </button>
+        </div>
+    </div>
 </div>

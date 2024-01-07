@@ -28,6 +28,7 @@ import { LoginComponent } from './login/login.component';
 import { RegistrationComponent } from './registration/registration.component';
 
 import { AuthModule } from '@auth0/auth0-angular';
+import { FilterPipe } from './filter.pipe.pipe';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { AuthModule } from '@auth0/auth0-angular';
     DeleteConfirmationComponent,
     LoginComponent,
     RegistrationComponent,
+    FilterPipe,
   ],
   imports: [
     BrowserAnimationsModule,

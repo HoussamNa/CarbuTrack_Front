@@ -48,6 +48,33 @@
         width: 100%;
       }
     }
+    .form-group {
+      margin-bottom: 15px;
+    }
+    
+    /* Style for label */
+    .form-group label {
+      display: block;
+      margin-bottom: 5px;
+    }
+    
+    /* Style for select element */
+    .form-group select {
+      width: 100%;
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+      font-size: 16px;
+      outline: none;
+    }
+    
+    /* Style for select options */
+    .form-group select option {
+      padding: 5px;
+      font-size: 14px;
+      background-color: #fff;
+    }
   
     .list-container {
       width: 40%;
