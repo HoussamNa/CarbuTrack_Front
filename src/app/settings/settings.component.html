@@ -7,12 +7,12 @@
             <legend>Personal Information</legend>
             <div class="form-group">
                 <label for="username">Username:</label>
-                <input type="text" id="username" name="username" [(ngModel)]="userData.username" required>
+                <input readonly type="text" id="username" name="username" [(ngModel)]="userData.username" required>
             </div>
 
             <div class="form-group">
                 <label for="email">Email:</label>
-                <input type="email" id="email" name="email" [(ngModel)]="userData.email" required>
+                <input readonly type="email" id="email" name="email" [(ngModel)]="userData.email" required>
             </div>
         </fieldset>
 
@@ -37,4 +37,8 @@
 
         <button type="submit" class="submit-btn">Update</button>
     </form>
+    <div class="message" [ngClass]="{'success': successMessage, 'error': errorMessage}">
+        {{ successMessage || errorMessage }}
+    </div>
+
 </div>
