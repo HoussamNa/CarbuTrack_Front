@@ -14,7 +14,6 @@ export class Chart2Component implements OnInit {
 
   ngOnInit() {
     if (isPlatformBrowser(this.platformId)) {
-      // This code will only execute in a browser environment
       const documentStyle = getComputedStyle(document.documentElement);
       const textColor = documentStyle.getPropertyValue('--text-color');
       const textColorSecondary = documentStyle.getPropertyValue('--text-color-secondary');
@@ -24,14 +23,14 @@ export class Chart2Component implements OnInit {
         labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
         datasets: [
           {
-            label: 'Maserati',
+            label: 'Gasoline',
             data: [65, 59, 80, 81, 56, 55, 40],
             fill: false,
             borderColor: '#4CAF50',
             tension: 0.4
           },
           {
-            label: 'Maybach',
+            label: 'Diesel',
             data: [28, 48, 40, 19, 86, 27, 90],
             fill: false,
             borderColor: documentStyle.getPropertyValue('--pink-500'),

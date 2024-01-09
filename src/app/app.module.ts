@@ -27,7 +27,7 @@ import { ButtonModule } from 'primeng/button';
 import { LoginComponent } from './login/login.component';
 import { RegistrationComponent } from './registration/registration.component';
 
-import { AuthModule } from '@auth0/auth0-angular';
+// import { AuthModule } from '@auth0/auth0-angular';
 
 @NgModule({
   declarations: [

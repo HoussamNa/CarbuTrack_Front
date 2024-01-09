@@ -18,17 +18,13 @@ export class RegistrationComponent {
   constructor(private http: HttpClient) {}
 
   registerUser() {
-    // Make an HTTP POST request to your backend for registration
     this.http
-      .post('http://localhost:8086/api/client/', this.user) // Replace with your actual backend URL
+      .post('http://localhost:8086/api/client/', this.user)
       .subscribe(
         (response) => {
-          // Handle a successful registration response
           console.log('Registration successful:', response);
-          // You can also navigate to a different page after successful registration.
         },
         (error) => {
-          // Handle registration error
           console.error('Registration failed:', error);
         }
       );
