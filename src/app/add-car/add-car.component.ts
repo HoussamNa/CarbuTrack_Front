@@ -7,10 +7,11 @@ import { CarService, Car } from '../car.service';
   styleUrls: ['./add-car.component.scss']
 })
 export class AddCarComponent implements OnInit {
-  newCar: Car = { immatriculation: '', annee: 0, carImage: '' };
+  newCar: Car = { brand: '', model: '', registrationNumber: '', fuelType: '', photoU: '' };
   cars: Car[] = [];
   currentPage = 1;
   itemsPerPage = 5;
+  editingCar: Car | null = null;
 
   constructor(private carService: CarService) {}
 
@@ -24,22 +25,34 @@ export class AddCarComponent implements OnInit {
     });
   }
 
-  addCar(car: Car) {
-    this.carService.addCar(car).subscribe(() => {
-      this.getCars();
+  addCar() {
+    this.carService.addCar(this.newCar).subscribe((data) => {
+      this.cars.push(data);
+      this.newCar = { brand: '', model: '', registrationNumber: '', fuelType: '', photoU: '' };
     });
   }
 
   editCar(car: Car) {
-    // Logic to edit a car
-    // You'll need to fill in this method based on how you want to handle editing.
+    this.editingCar = { ...car };
   }
 
-  deleteCar(car: Car) {
-    this.carService.deleteCar(car).subscribe(() => {
-      this.getCars();
-    });
+  updateCar() {
+    if (this.editingCar) {
+      this.carService.updateCar(this.editingCar).subscribe(() => {
+        this.getCars();
+        this.editingCar = null;
+      });
+    }
   }
+
+  deleteCar(id: number | undefined) {
+    if (id !== undefined) {
+      this.carService.deleteCar(id).subscribe(() => {
+        this.getCars();
+      });
+    }
+  }
+  
 
   onPageChange(page: number) {
     this.currentPage = page;
@@ -55,7 +68,11 @@ export class AddCarComponent implements OnInit {
     if (file) {
       const reader = new FileReader();
       reader.onload = (e: any) => {
-        this.newCar.carImage = e.target.result;
+        if (this.editingCar) {
+          this.editingCar.photoU = e.target.result;
+        } else {
+          this.newCar.photoU = e.target.result;
+        }
       };
       reader.readAsDataURL(file);
     }

@@ -7,16 +7,18 @@
           <li *ngFor="let car of cars | slice:(currentPage - 1) * itemsPerPage : currentPage * itemsPerPage">
               <div class="car-details">
                   <div class="car-image">
-                      <img [src]="car.carImage" alt="Car Image">
+                      <img [src]="car.photoU" alt="Car Image">
                   </div>
                   <div class="car-info">
-                      <span class="car-immatriculation">{{ car.immatriculation }}</span>
-                      <span class="car-year">{{ car.annee }}</span>
+                      <span class="car-brand">{{ car.brand }}</span>
+                      <span class="car-model">{{ car.model }}</span>
+                      <span class="car-registrationNumber">{{ car.registrationNumber }}</span>
                   </div>
               </div>
               <div class="button-group">
                   <button class="edit-button" (click)="editCar(car)">Edit</button>
-                  <button class="delete-button" (click)="deleteCar(car)">Delete</button>
+                  <button class="delete-button" (click)="deleteCar(car?.id)">Delete</button>
+
               </div>
           </li>
       </ul>
@@ -28,23 +30,31 @@
       </div>
   </div>
 
-  <!-- Add Car Form -->
+  <!-- Add/Edit Car Form -->
   <div class="form-container">
-      <form (submit)="addCar(newCar)">
-          <h2>Add a Car</h2>
+      <form (submit)="editingCar ? updateCar() : addCar()">
+          <h2>{{ editingCar ? 'Edit Car' : 'Add Car' }}</h2>
           <div class="form-group">
-              <label for="immatriculation">Immatriculation:</label>
-              <input type="text" id="immatriculation" name="immatriculation" [(ngModel)]="newCar.immatriculation" required>
+              <label for="brand">Brand:</label>
+              <input type="text" id="brand" name="brand" [(ngModel)]="editingCar ? editingCar.brand : newCar.brand" required>
           </div>
           <div class="form-group">
-              <label for="annee">Year:</label>
-              <input type="number" id="annee" name="annee" [(ngModel)]="newCar.annee" required>
+              <label for="model">Model:</label>
+              <input type="text" id="model" name="model" [(ngModel)]="editingCar ? editingCar.model : newCar.model" required>
+          </div>
+          <div class="form-group">
+              <label for="registrationNumber">Registration Number:</label>
+              <input type="text" id="registrationNumber" name="registrationNumber" [(ngModel)]="editingCar ? editingCar.registrationNumber : newCar.registrationNumber" required>
+          </div>
+          <div class="form-group">
+              <label for="fuelType">Fuel Type:</label>
+              <input type="text" id="fuelType" name="fuelType" [(ngModel)]="editingCar ? editingCar.fuelType : newCar.fuelType" required>
           </div>
           <div class="form-group">
               <label for="carImage">Image:</label>
               <input type="file" id="carImage" name="carImage" accept="image/*" (change)="handleFileInput($event)">
           </div>
-          <button type="submit">Submit</button>
+          <button type="submit">{{ editingCar ? 'Update' : 'Submit' }}</button>
       </form>
   </div>
 </div>

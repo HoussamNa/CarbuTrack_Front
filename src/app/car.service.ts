@@ -1,41 +1,45 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
-
-export interface Car {
-  immatriculation: string;
-  annee: number;
-  carImage: string; // Assumes this will be a data URL or path to the image
-}
-
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CarService {
-  private cars: Car[] = [];
+  private apiUrl = 'http://localhost:8089/api/car'; // Update with your actual API URL
+
+  constructor(private http: HttpClient) {}
 
   getCars(): Observable<Car[]> {
-    return of(this.cars);
+    return this.http.get<Car[]>(this.apiUrl);
   }
 
-  addCar(car: Car): Observable<void> {
-    this.cars.push(car);
-    return of(void 0);
-  }
-
-  updateCar(updatedCar: Car): Observable<void> {
-    const index = this.cars.findIndex(car => car.immatriculation === updatedCar.immatriculation);
-    if (index !== -1) {
-      this.cars[index] = updatedCar;
+  addCar(car: Car): Observable<Car> {
+    const currentUserJSON = localStorage.getItem('currentUser');
+    if (currentUserJSON) {
+      const currentUser = JSON.parse(currentUserJSON);
+      car.clientId = currentUser.id; // Set the clientId from the logged-in user
     }
-    return of(void 0);
+    return this.http.post<Car>(this.apiUrl, car);
   }
 
-  deleteCar(car: Car): Observable<void> {
-    const index = this.cars.findIndex(c => c === car);
-    if (index > -1) {
-      this.cars.splice(index, 1);
-    }
-    return of(void 0);
+  updateCar(car: Car): Observable<Car> {
+    const url = `${this.apiUrl}/${car.id}`;
+    return this.http.put<Car>(url, car);
   }
+
+  deleteCar(id: number): Observable<void> {
+    const url = `${this.apiUrl}/${id}`;
+    return this.http.delete<void>(url);
+  }
+}
+
+export interface Car {
+  id?: number;
+  brand: string;
+  model: string;
+  registrationNumber: string;
+  fuelType: string;
+  photoU: string;
+  clientId?: number;
 }
