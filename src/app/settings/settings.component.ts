@@ -1,3 +1,4 @@
+// settings.component.ts
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
@@ -17,21 +18,25 @@ export class SettingsComponent implements OnInit {
 
   errorMessage: string = '';
   successMessage: string = '';
+  newPasswordConstraintMessage: string = '';
 
   constructor(private http: HttpClient) {}
 
   ngOnInit() {
-    const currentUser = localStorage.getItem('currentUser');
-    if (currentUser !== null) {
-      const userData = JSON.parse(currentUser);
-      this.userData.username = userData.username;
-      this.userData.email = userData.email;
+    if (typeof localStorage !== 'undefined') {
+      const currentUser = localStorage.getItem('currentUser');
+      if (currentUser !== null) {
+        const userData = JSON.parse(currentUser);
+        this.userData.username = userData.username;
+        this.userData.email = userData.email;
+      }
     }
   }
 
   updateSettings() {
     this.errorMessage = '';
     this.successMessage = '';
+    this.newPasswordConstraintMessage = ''; // Clear newPassword error message
 
     // Check if newPassword and confirmPassword match
     if (this.userData.newPassword !== this.userData.confirmPassword) {
@@ -40,6 +45,12 @@ export class SettingsComponent implements OnInit {
         this.errorMessage = '';
       }, 5000);
       return; // Return early if passwords don't match
+    }
+
+    // Check if newPassword meets constraints
+    if (!this.validatePassword(this.userData.newPassword)) {
+      this.newPasswordConstraintMessage = 'Password must be at least 8 characters long and contain at least one lowercase letter, one uppercase letter, one digit, and one special character.';
+      return;
     }
 
     this.http
@@ -63,5 +74,10 @@ export class SettingsComponent implements OnInit {
           }, 5000);
         }
       );
+  }
+
+  validatePassword(password: string): boolean {
+    const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()_+])[0-9a-zA-Z!@#$%^&*()_+]{8,}$/;
+    return passwordRegex.test(password);
   }
 }

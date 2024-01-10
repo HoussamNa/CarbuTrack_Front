@@ -10,9 +10,11 @@
     </div>
     <div class="form-group">
       <input [(ngModel)]="user.email" type="email" id="email" class="email-input" placeholder="Enter your email">
+      <div class="error-message">{{ emailConstraintMessage }}</div> <!-- Display email error message -->
     </div>
     <div class="form-group">
       <input [(ngModel)]="user.password" type="password" id="password" class="password-input" placeholder="Enter your password">
+      <div class="error-message">{{ passwordConstraintMessage }}</div> <!-- Display password error message -->
     </div>
     <div class="form-group">
       <label for="enterprise">Entreprise</label>
