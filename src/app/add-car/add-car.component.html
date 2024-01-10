@@ -6,8 +6,8 @@
       <ul>
           <li *ngFor="let car of cars | slice:(currentPage - 1) * itemsPerPage : currentPage * itemsPerPage">
               <div class="car-details">
-                  <div class="car-image">
-                      <img [src]="car.photoU" alt="Car Image">
+                <div class="car-image">
+                    <img [src]="car.photoU" alt="Car Image">
                   </div>
                   <div class="car-info">
                       <span class="car-brand">{{ car.brand }}</span>
@@ -32,7 +32,7 @@
 
   <!-- Add/Edit Car Form -->
   <div class="form-container">
-      <form (submit)="editingCar ? updateCar() : addCar()">
+    <form (submit)="editingCar ? updateCar() : addCar()" enctype="multipart/form-data">
           <h2>{{ editingCar ? 'Edit Car' : 'Add Car' }}</h2>
           <div class="form-group">
               <label for="brand">Brand:</label>

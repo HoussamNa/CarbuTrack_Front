@@ -25,11 +25,45 @@ export class AddCarComponent implements OnInit {
     });
   }
 
+  handleFileInput(event: any) {
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (e: any) => {
+        if (this.editingCar) {
+          this.editingCar.photoU = e.target.result; // Assign base64 data
+        } else {
+          this.newCar.photoU = e.target.result; // Assign base64 data
+        }
+
+        console.log('Image data:', e.target.result); // Log the base64 image data
+      };
+      reader.readAsDataURL(file);
+    }
+  }
+
   addCar() {
-    this.carService.addCar(this.newCar).subscribe((data) => {
-      this.cars.push(data);
-      this.newCar = { brand: '', model: '', registrationNumber: '', fuelType: '', photoU: '' };
-    });
+    // Create a new Car object with the other fields
+    const newCar: Car = {
+      brand: this.newCar.brand,
+      model: this.newCar.model,
+      registrationNumber: this.newCar.registrationNumber,
+      fuelType: this.newCar.fuelType,
+      photoU: this.newCar.photoU // This should be the base64-encoded image data, not a file input
+    };
+
+    console.log('New car data:', newCar); // Log the car data including the image data
+
+    this.carService.addCar(newCar).subscribe(
+      (data) => {
+        console.log('HTTP Request:', data); // Log the HTTP response
+        this.cars.push(data);
+        this.newCar = { brand: '', model: '', registrationNumber: '', fuelType: '', photoU: '' };
+      },
+      (error) => {
+        console.error('HTTP Error:', error); // Log any HTTP errors
+      }
+    );
   }
 
   editCar(car: Car) {
@@ -38,12 +72,20 @@ export class AddCarComponent implements OnInit {
 
   updateCar() {
     if (this.editingCar) {
-      this.carService.updateCar(this.editingCar).subscribe(() => {
-        this.getCars();
-        this.editingCar = null;
-      });
+      console.log('Updating car:', this.editingCar); // Log the editingCar object before the update
+      this.carService.updateCar(this.editingCar).subscribe(
+        (updatedCar) => {
+          console.log('Updated car:', updatedCar); // Log the updated car data
+          this.getCars();
+          this.editingCar = null;
+        },
+        (error) => {
+          console.error('HTTP Error:', error); // Log any HTTP errors
+        }
+      );
     }
   }
+  
 
   deleteCar(id: number | undefined) {
     if (id !== undefined) {
@@ -52,7 +94,6 @@ export class AddCarComponent implements OnInit {
       });
     }
   }
-  
 
   onPageChange(page: number) {
     this.currentPage = page;
@@ -61,20 +102,5 @@ export class AddCarComponent implements OnInit {
   getPaginationArray(): number[] {
     const pageCount = Math.ceil(this.cars.length / this.itemsPerPage);
     return new Array(pageCount).fill(0).map((_, index) => index + 1);
-  }
-
-  handleFileInput(event: any) {
-    const file = event.target.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = (e: any) => {
-        if (this.editingCar) {
-          this.editingCar.photoU = e.target.result;
-        } else {
-          this.newCar.photoU = e.target.result;
-        }
-      };
-      reader.readAsDataURL(file);
-    }
   }
 }

@@ -22,6 +22,9 @@
           color: #4CAF50;
           margin-bottom: 20px;
       }
+      span {
+        color: #4CAF50;
+      }
 
       ul {
           list-style: none;
@@ -71,6 +74,7 @@
                       transition: background-color 0.3s;
                       font-size: 0.9em;
                       margin-left: 5px;
+                      color: white;
 
                       &:first-child {
                           background-color: #FFC107; // Yellow for edit
