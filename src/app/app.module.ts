@@ -26,7 +26,6 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ButtonModule } from 'primeng/button';
 import { LoginComponent } from './login/login.component';
 import { RegistrationComponent } from './registration/registration.component';
-import { MatSnackBarModule } from '@angular/material/snack-bar';
 // import { AuthModule } from '@auth0/auth0-angular';
 
 @NgModule({
@@ -61,7 +60,6 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     ConfirmDialogModule,
     ButtonModule,
     AppRoutingModule,
-    MatSnackBarModule, 
     // AuthModule.forRoot({
     //   domain: 'dev-m6ufepys0ol5g70y.us.auth0.com',
     //   clientId: 'cQJjvXG4HAEt1DgK1VrMIxNfbGvoUL4p',
