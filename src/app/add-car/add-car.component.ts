@@ -7,11 +7,16 @@ import { CarService, Car } from '../car.service';
   styleUrls: ['./add-car.component.scss']
 })
 export class AddCarComponent implements OnInit {
+  hoveredCar: any;
+
   newCar: Car = { brand: '', model: '', registrationNumber: '', fuelType: '', photoU: '' };
   cars: Car[] = [];
   currentPage = 1;
-  itemsPerPage = 5;
+  itemsPerPage = 8;
   editingCar: Car | null = null;
+
+  isCarInfoVisible = false;
+  carInfo: any;
 
   constructor(private carService: CarService) {}
 
@@ -85,7 +90,6 @@ export class AddCarComponent implements OnInit {
       );
     }
   }
-  
 
   deleteCar(id: number | undefined) {
     if (id !== undefined) {
@@ -102,5 +106,10 @@ export class AddCarComponent implements OnInit {
   getPaginationArray(): number[] {
     const pageCount = Math.ceil(this.cars.length / this.itemsPerPage);
     return new Array(pageCount).fill(0).map((_, index) => index + 1);
+  }
+
+  // Method to cancel the edit and go back to add form
+  cancelEdit() {
+    this.editingCar = null;
   }
 }

@@ -1,60 +1,59 @@
 <app-sidebar></app-sidebar>
 <div class="add-car-container">
-  <!-- Car List Container -->
   <div class="car-list-container">
-      <h2>List of Cars</h2>
-      <ul>
-          <li *ngFor="let car of cars | slice:(currentPage - 1) * itemsPerPage : currentPage * itemsPerPage">
-              <div class="car-details">
-                <div class="car-image">
-                    <img [src]="car.photoU" alt="Car Image">
-                  </div>
-                  <div class="car-info">
-                      <span class="car-brand">{{ car.brand }}</span>
-                      <span class="car-model">{{ car.model }}</span>
-                      <span class="car-registrationNumber">{{ car.registrationNumber }}</span>
-                  </div>
-              </div>
-              <div class="button-group">
-                  <button class="edit-button" (click)="editCar(car)">Edit</button>
-                  <button class="delete-button" (click)="deleteCar(car?.id)">Delete</button>
-
-              </div>
-          </li>
-      </ul>
-
-      <div class="pagination">
-          <button *ngFor="let page of getPaginationArray()" (click)="onPageChange(page)" [class.active]="currentPage === page">
-              {{ page }}
-          </button>
-      </div>
+    <h2>List of Cars</h2>
+    <ul class="car-grid">
+      <li *ngFor="let car of cars | slice:(currentPage - 1) * itemsPerPage : currentPage * itemsPerPage">
+        <div class="car-card" (mouseenter)="hoveredCar = car" (mouseleave)="hoveredCar = null">
+          <div class="car-image">
+            <img [src]="car.photoU" alt="Car Image" [class.hidden]="hoveredCar === car">
+          </div>
+          <div class="car-details" [class.visible]="hoveredCar === car">
+            <div class="car-info">
+              <span class="car-brand">{{ car.brand }}</span>
+              <span class="car-model">{{ car.model }}</span>
+              <span class="car-registrationNumber">{{ car.registrationNumber }}</span>
+            </div>
+            <div class="button-group">
+              <button class="edit-button" (click)="editCar(car)">Edit</button>
+              <button class="delete-button" (click)="deleteCar(car?.id)">Delete</button>
+            </div>
+          </div>
+        </div>
+      </li>
+    </ul>
+    <div class="pagination">
+      <button *ngFor="let page of getPaginationArray()" (click)="onPageChange(page)" [class.active]="currentPage === page">
+        {{ page }}
+      </button>
+    </div>
   </div>
 
-  <!-- Add/Edit Car Form -->
   <div class="form-container">
     <form (submit)="editingCar ? updateCar() : addCar()" enctype="multipart/form-data">
-          <h2>{{ editingCar ? 'Edit Car' : 'Add Car' }}</h2>
-          <div class="form-group">
-              <label for="brand">Brand:</label>
-              <input type="text" id="brand" name="brand" [(ngModel)]="editingCar ? editingCar.brand : newCar.brand" required>
-          </div>
-          <div class="form-group">
-              <label for="model">Model:</label>
-              <input type="text" id="model" name="model" [(ngModel)]="editingCar ? editingCar.model : newCar.model" required>
-          </div>
-          <div class="form-group">
-              <label for="registrationNumber">Registration Number:</label>
-              <input type="text" id="registrationNumber" name="registrationNumber" [(ngModel)]="editingCar ? editingCar.registrationNumber : newCar.registrationNumber" required>
-          </div>
-          <div class="form-group">
-              <label for="fuelType">Fuel Type:</label>
-              <input type="text" id="fuelType" name="fuelType" [(ngModel)]="editingCar ? editingCar.fuelType : newCar.fuelType" required>
-          </div>
-          <div class="form-group">
-              <label for="carImage">Image:</label>
-              <input type="file" id="carImage" name="carImage" accept="image/*" (change)="handleFileInput($event)">
-          </div>
-          <button type="submit">{{ editingCar ? 'Update' : 'Submit' }}</button>
-      </form>
+      <h2>{{ editingCar ? 'Edit Car' : 'Add Car' }}</h2>
+      <div class="form-group">
+        <label for="brand">Brand:</label>
+        <input type="text" id="brand" name="brand" [(ngModel)]="editingCar ? editingCar.brand : newCar.brand" required>
+      </div>
+      <div class="form-group">
+        <label for="model">Model:</label>
+        <input type="text" id="model" name="model" [(ngModel)]="editingCar ? editingCar.model : newCar.model" required>
+      </div>
+      <div class="form-group">
+        <label for="registrationNumber">Registration Number:</label>
+        <input type="text" id="registrationNumber" name="registrationNumber" [(ngModel)]="editingCar ? editingCar.registrationNumber : newCar.registrationNumber" required>
+      </div>
+      <div class="form-group">
+        <label for="fuelType">Fuel Type:</label>
+        <input type="text" id="fuelType" name="fuelType" [(ngModel)]="editingCar ? editingCar.fuelType : newCar.fuelType" required>
+      </div>
+      <div class="form-group">
+        <label for="carImage">Image:</label>
+        <input type="file" id="carImage" name="carImage" accept="image/*" (change)="handleFileInput($event)">
+      </div>
+      <button type="button" *ngIf="editingCar" (click)="cancelEdit()">Cancel</button>
+      <button type="submit">{{ editingCar ? 'Update' : 'Submit' }}</button>
+    </form>
   </div>
 </div>

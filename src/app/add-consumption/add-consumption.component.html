@@ -5,6 +5,13 @@
       <form (submit)="addConsumption(newConsumption)">
           <h2>Add a Consumption</h2>
           <div class="form-group">
+              <label for="car">Car:</label>
+              <select id="car" name="car" [(ngModel)]="newConsumption.car" required>
+                  <option value="">Select a Car</option>
+                  <option *ngFor="let car of cars" [value]="car.id">{{ car.brand }} - {{ car.model }}</option>
+              </select>
+          </div>
+          <div class="form-group">
               <label for="quantity">Quantity:</label>
               <input type="number" id="quantity" name="quantity" [(ngModel)]="newConsumption.quantity" required>
           </div>

@@ -7,7 +7,18 @@ import { ConsumptionService, Consumption } from '../consumption.service';
   styleUrls: ['./add-consumption.component.scss']
 })
 export class AddConsumptionComponent implements OnInit {
-    newConsumption: Consumption = { quantity: 0, cost: 0, date: '' };
+    newConsumption: any = {
+        car: null, // Initialize the car property to null or a default value
+        quantity: null,
+        cost: null,
+        date: null
+      };
+    cars: any[] = [  // Replace 'any[]' with the actual type of your 'cars' array
+    { id: 1, brand: 'Brand 1', model: 'Model 1' },
+    { id: 2, brand: 'Brand 2', model: 'Model 2' },
+    // Add more car objects as needed
+  ];
+    
     consumptions: Consumption[] = [];
     currentPage: number = 1;
     itemsPerPage: number = 10;
