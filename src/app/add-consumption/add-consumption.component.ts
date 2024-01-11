@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ConsumptionService, Consumption } from '../consumption.service';
-import { Car } from '../car.service';
+import { Car, CarService } from '../car.service';
 
 @Component({
   selector: 'app-add-consumption',
@@ -26,11 +26,14 @@ export class AddConsumptionComponent implements OnInit {
   };
   showEditForm: boolean = false;
 
-  constructor(private consumptionService: ConsumptionService) {}
+  constructor(
+    private consumptionService: ConsumptionService,
+    private carService: CarService // Inject CarService
+  ) {}
 
   ngOnInit() {
     this.getConsumptions();
-    this.getCars();
+    this.getCars(); // Call getCars to populate the cars array
   }
 
   getConsumptions() {
@@ -86,6 +89,9 @@ export class AddConsumptionComponent implements OnInit {
   }
 
   getCars() {
-    // Load the list of cars from your CarService here
+    // Load the list of cars from your CarService
+    this.carService.getCars().subscribe((cars) => {
+      this.cars = cars;
+    });
   }
 }
