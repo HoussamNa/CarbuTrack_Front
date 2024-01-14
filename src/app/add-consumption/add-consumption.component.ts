@@ -94,4 +94,5 @@ export class AddConsumptionComponent implements OnInit {
       this.cars = cars;
     });
   }
+  
 }

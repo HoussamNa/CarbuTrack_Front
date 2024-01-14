@@ -46,8 +46,12 @@
       </div>
       <div class="form-group">
         <label for="fuelType">Fuel Type:</label>
-        <input type="text" id="fuelType" name="fuelType" [(ngModel)]="editingCar ? editingCar.fuelType : newCar.fuelType" required>
+        <select id="fuelType" name="fuelType" [(ngModel)]="editingCar ? editingCar.fuelType : newCar.fuelType" required>
+          <option value="Gasoline">Gasoline</option>
+          <option value="Diesel">Diesel</option>
+        </select>
       </div>
+      
       <div class="form-group">
         <label for="carImage">Image:</label>
         <input type="file" id="carImage" name="carImage" accept="image/*" (change)="handleFileInput($event)">

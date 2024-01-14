@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CarService, Car } from '../car.service'; // Import your CarService
 
 @Component({
   selector: 'app-chart3',
@@ -9,28 +10,38 @@ export class Chart3Component implements OnInit {
   data: any;
   options: any;
 
+  constructor(private carService: CarService) {}
+
   ngOnInit() {
-    // Check if we are in a browser context
-    if (typeof window !== 'undefined') {
+    // Fetch car data from the CarService
+    this.carService.getCars().subscribe((cars: Car[]) => {
       const documentStyle = getComputedStyle(document.documentElement);
       const textColor = documentStyle.getPropertyValue('--text-color');
       const textColorSecondary = documentStyle.getPropertyValue('--text-color-secondary');
       const surfaceBorder = documentStyle.getPropertyValue('--surface-border');
 
+      // Extract meaningful statistics from car data
+      const brands = cars.map(car => car.brand);
+      const fuelTypes = cars.map(car => car.fuelType);
+      const uniqueBrands = [...new Set(brands)]; // Get unique brand names
+      const brandCounts = uniqueBrands.map(brand => brands.filter(b => b === brand).length); // Count cars per brand
+      const uniqueFuelTypes = [...new Set(fuelTypes)]; // Get unique fuel types
+      const fuelTypeCounts = uniqueFuelTypes.map(fuelType => fuelTypes.filter(f => f === fuelType).length); // Count cars per fuel type
+
       this.data = {
-        labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+        labels: uniqueBrands, // Display brands on the X-axis
         datasets: [
           {
-            label: 'My First dataset',
+            label: 'Number of Cars per Brand',
             backgroundColor: documentStyle.getPropertyValue('--blue-500'),
             borderColor: documentStyle.getPropertyValue('--blue-500'),
-            data: [65, 59, 80, 81, 56, 55, 40]
+            data: brandCounts
           },
           {
-            label: 'My Second dataset',
+            label: 'Number of Cars per Fuel Type',
             backgroundColor: documentStyle.getPropertyValue('--pink-500'),
             borderColor: documentStyle.getPropertyValue('--pink-500'),
-            data: [28, 48, 40, 19, 86, 27, 90]
+            data: fuelTypeCounts
           }
         ]
       };
@@ -69,6 +80,6 @@ export class Chart3Component implements OnInit {
           }
         }
       };
-    }
+    });
   }
 }

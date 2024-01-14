@@ -33,10 +33,7 @@ export class ConsumptionService {
     const url = `${this.apiUrl}/client/${clientId}`; // Modify the URL to match your API endpoint
     return this.http.get<Car[]>(url);
   }
-  
 
-
-  
 }
 // consumption.model.ts (You can name it as per your project structure)
 export interface Consumption {

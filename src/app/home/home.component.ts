@@ -30,7 +30,7 @@ export class HomeComponent implements OnInit {
           this.userLongitude = position.coords.longitude;
 
           const headers = new HttpHeaders({
-            Authorization: 'apikey 1N5ZqxfcKBO37FStbGtxjE:7IApzGQur5eLn14Pm0bsqv',
+            Authorization: 'apikey 3nL26O9Vl979nH8ZjEGXZu:1TP9LHzTLdjOkfHqGue4VC',
             'Content-Type': 'application/json',
           });
 
