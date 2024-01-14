@@ -16,6 +16,7 @@ export class HomeComponent implements OnInit {
   userLongitude: number = 0;
   fuelCostForm: FormGroup = new FormGroup({});
   fuelCostResult: string = '';
+  todayWeather: any; // Store today's weather data
 
   // Exchange rate from original currency to MAD
   exchangeRateToMAD: number = 9.96; // Replace with the actual exchange rate
@@ -43,7 +44,7 @@ export class HomeComponent implements OnInit {
               (data) => {
                 if (data.success) {
                   // Convert gasoline and diesel prices to MAD
-                  this.gasolinePrice = (parseFloat(data.result.gasoline) * this.exchangeRateToMAD +3).toFixed(2);
+                  this.gasolinePrice = (parseFloat(data.result.gasoline) * this.exchangeRateToMAD + 3).toFixed(2);
                   this.dieselPrice = (parseFloat(data.result.diesel) * this.exchangeRateToMAD + 3).toFixed(2);
                   this.currency = 'MAD'; // Currency is MAD
                   this.date = data.result.date;
@@ -55,6 +56,25 @@ export class HomeComponent implements OnInit {
                 console.error('Error while fetching data:', error);
               }
             );
+
+            // Fetch today's weather data
+            this.http
+              .get<any>(
+                `https://api.collectapi.com/weather/getWeather?data.lang=en&data.city=marrakech`,
+                { headers: headers }
+              )
+              .subscribe(
+                (data) => {
+                  if (data.result && data.result.length > 0) {
+                    this.todayWeather = data.result[0];
+                  } else {
+                    console.error('Failed to fetch today\'s weather data');
+                  }
+                },
+                (error) => {
+                  console.error('Error while fetching weather data:', error);
+                }
+              );
         },
         (error) => {
           console.error('Error getting user location:', error);
