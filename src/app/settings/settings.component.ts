@@ -1,6 +1,7 @@
-// settings.component.ts
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { isPlatformBrowser } from '@angular/common';
+import { Inject, PLATFORM_ID } from '@angular/core';
 
 @Component({
   selector: 'app-settings',
@@ -18,12 +19,14 @@ export class SettingsComponent implements OnInit {
 
   errorMessage: string = '';
   successMessage: string = '';
-  newPasswordConstraintMessage: string = '';
 
-  constructor(private http: HttpClient) {}
+  constructor(
+    private http: HttpClient,
+    @Inject(PLATFORM_ID) private platformId: Object
+  ) {}
 
   ngOnInit() {
-    if (typeof localStorage !== 'undefined') {
+    if (isPlatformBrowser(this.platformId)) {
       const currentUser = localStorage.getItem('currentUser');
       if (currentUser !== null) {
         const userData = JSON.parse(currentUser);
@@ -36,20 +39,12 @@ export class SettingsComponent implements OnInit {
   updateSettings() {
     this.errorMessage = '';
     this.successMessage = '';
-    this.newPasswordConstraintMessage = ''; // Clear newPassword error message
 
-    // Check if newPassword and confirmPassword match
     if (this.userData.newPassword !== this.userData.confirmPassword) {
       this.errorMessage = 'New password and confirm password do not match.';
       setTimeout(() => {
         this.errorMessage = '';
       }, 5000);
-      return; // Return early if passwords don't match
-    }
-
-    // Check if newPassword meets constraints
-    if (!this.validatePassword(this.userData.newPassword)) {
-      this.newPasswordConstraintMessage = 'Password must be at least 8 characters long and contain at least one lowercase letter, one uppercase letter, one digit, and one special character.';
       return;
     }
 
@@ -64,11 +59,18 @@ export class SettingsComponent implements OnInit {
           this.successMessage = 'Password updated successfully';
           setTimeout(() => {
             this.successMessage = '';
+            this.clearFields(); // Clear password-related fields on success
           }, 5000);
         },
         (error) => {
           console.error('Password update failed:', error);
-          this.errorMessage = 'Failed to update password. Please check your current password and try again.';
+
+          if (error.status === 400) {
+            this.errorMessage = error.error;
+          } else {
+            this.errorMessage = 'Failed to update password. Please try again later.';
+          }
+
           setTimeout(() => {
             this.errorMessage = '';
           }, 5000);
@@ -76,8 +78,9 @@ export class SettingsComponent implements OnInit {
       );
   }
 
-  validatePassword(password: string): boolean {
-    const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()_+])[0-9a-zA-Z!@#$%^&*()_+]{8,}$/;
-    return passwordRegex.test(password);
+  clearFields() {
+    this.userData.currentPassword = '';
+    this.userData.newPassword = '';
+    this.userData.confirmPassword = '';
   }
 }

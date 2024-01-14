@@ -3,39 +3,50 @@
 <div class="settings-container">
     <h2>Account Settings</h2>
     <form class="settings-form" (ngSubmit)="updateSettings()">
-        <!-- User Information Section -->
-        <fieldset>
-            <legend>Personal Information</legend>
-            <div class="form-group">
-                <label for="username">Username:</label>
-                <input type="text" id="username" name="username" [(ngModel)]="userData.username" required disabled>
-            </div>
-
-            <div class="form-group">
-                <label for="email">Email:</label>
-                <input type="email" id="email" name="email" [(ngModel)]="userData.email" required disabled>
-            </div>
-        </fieldset>
-
-        <!-- Password Update Section -->
-        <fieldset>
-            <legend>Change Password</legend>
-            <div class="form-group">
-                <label for="current-password">Current Password:</label>
-                <input type="password" id="current-password" name="current-password" [(ngModel)]="userData.currentPassword" required>
-            </div>
-
-            <div class="form-group">
-                <label for="new-password">New Password:</label>
-                <input type="password" id="new-password" name="new-password" [(ngModel)]="userData.newPassword" required>
-            </div>
-
-            <div class="form-group">
-                <label for="confirm-password">Confirm New Password:</label>
-                <input type="password" id="confirm-password" name="confirm-password" [(ngModel)]="userData.confirmPassword" required>
-            </div>
-        </fieldset>
-
-        <button type="submit" class="submit-btn">Update</button>
+      <!-- User Information Section -->
+      <fieldset>
+        <legend>Personal Information</legend>
+        <div class="form-group">
+          <label for="username">Username:</label>
+          <input type="text" id="username" name="username" [(ngModel)]="userData.username" required disabled>
+        </div>
+  
+        <div class="form-group">
+          <label for="email">Email:</label>
+          <input type="email" id="email" name="email" [(ngModel)]="userData.email" required disabled>
+        </div>
+      </fieldset>
+  
+      <!-- Password Update Section -->
+      <fieldset>
+        <legend>Change Password</legend>
+        <div class="form-group">
+          <label for="current-password">Current Password:</label>
+          <input type="password" id="current-password" name="current-password" [(ngModel)]="userData.currentPassword" required>
+        </div>
+  
+        <div class="form-group">
+          <label for="new-password">New Password:</label>
+          <input type="password" id="new-password" name="new-password" [(ngModel)]="userData.newPassword" required>
+        </div>
+  
+        <div class="form-group">
+          <label for="confirm-password">Confirm New Password:</label>
+          <input type="password" id="confirm-password" name="confirm-password" [(ngModel)]="userData.confirmPassword" required>
+        </div>
+      </fieldset>
+  
+      <!-- Success message -->
+      <div *ngIf="successMessage" class="success-message">
+        {{ successMessage }}
+      </div>
+  
+      <!-- Error message -->
+      <div *ngIf="errorMessage" class="error-message">
+        {{ errorMessage }}
+      </div>
+  
+      <button type="submit" class="submit-btn">Update</button>
     </form>
-</div>
+  </div>
+  

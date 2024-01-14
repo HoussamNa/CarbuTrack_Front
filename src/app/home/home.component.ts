@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-home',
@@ -7,14 +8,19 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
-  gasolinePrice: string = '';
-  dieselPrice: string = '';
+  gasolinePrice: string = ''; // Gasoline price in MAD
+  dieselPrice: string = '';   // Diesel price in MAD
   currency: string = '';
   date: string = '';
   userLatitude: number = 0;
   userLongitude: number = 0;
+  fuelCostForm: FormGroup = new FormGroup({});
+  fuelCostResult: string = '';
 
-  constructor(private http: HttpClient) {}
+  // Exchange rate from original currency to MAD
+  exchangeRateToMAD: number = 9.96; // Replace with the actual exchange rate
+
+  constructor(private http: HttpClient, private fb: FormBuilder) {}
 
   ngOnInit() {
     if ('geolocation' in navigator) {
@@ -24,7 +30,7 @@ export class HomeComponent implements OnInit {
           this.userLongitude = position.coords.longitude;
 
           const headers = new HttpHeaders({
-            Authorization: 'apikey 4q4TY2g1CqB3xDBUvQHnLr:0VeN67tVcoXWFf9w6EaQ1w',
+            Authorization: 'apikey 1N5ZqxfcKBO37FStbGtxjE:7IApzGQur5eLn14Pm0bsqv',
             'Content-Type': 'application/json',
           });
 
@@ -36,9 +42,10 @@ export class HomeComponent implements OnInit {
             .subscribe(
               (data) => {
                 if (data.success) {
-                  this.gasolinePrice = data.result.gasoline;
-                  this.dieselPrice = data.result.diesel;
-                  this.currency = data.result.currency;
+                  // Convert gasoline and diesel prices to MAD
+                  this.gasolinePrice = (parseFloat(data.result.gasoline) * this.exchangeRateToMAD +3).toFixed(2);
+                  this.dieselPrice = (parseFloat(data.result.diesel) * this.exchangeRateToMAD + 3).toFixed(2);
+                  this.currency = 'MAD'; // Currency is MAD
                   this.date = data.result.date;
                 } else {
                   console.error('Failed to fetch gas price data');
@@ -55,6 +62,35 @@ export class HomeComponent implements OnInit {
       );
     } else {
       console.error('Geolocation is not available in this browser.');
+    }
+
+    // Initialize the fuelCostForm
+    this.fuelCostForm = this.fb.group({
+      fuelType: ['gasoline', [Validators.required]],
+      fuelEfficiency: ['', [Validators.required, Validators.min(0)]],
+      tripDistance: ['', [Validators.required, Validators.min(0)]],
+    });
+  }
+
+  calculateFuelCost() {
+    if (this.fuelCostForm.valid) {
+      const fuelEfficiency = parseFloat(this.fuelCostForm.get('fuelEfficiency')!.value);
+      const tripDistance = parseFloat(this.fuelCostForm.get('tripDistance')!.value);
+
+      if (!isNaN(fuelEfficiency) && !isNaN(tripDistance)) {
+        // Get the selected fuel type from the form
+        const selectedFuelType = this.fuelCostForm.get('fuelType')!.value;
+
+        // Get the corresponding fuel price based on the selected type
+        const fuelPrice = selectedFuelType === 'gasoline' ? parseFloat(this.gasolinePrice) : parseFloat(this.dieselPrice);
+
+        // Calculate the fuel cost in MAD
+        const fuelCost = (tripDistance / fuelEfficiency) * fuelPrice;
+        this.fuelCostResult = `Estimated Fuel Cost: MAD ${fuelCost.toFixed(2)}`;
+      } else {
+        console.error('Invalid input values for fuel efficiency or trip distance.');
+        this.fuelCostResult = 'Invalid input values';
+      }
     }
   }
 }
