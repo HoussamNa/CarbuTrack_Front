@@ -1,38 +1,42 @@
-import { Injectable, PLATFORM_ID, Inject } from '@angular/core';
+import { Injectable, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { PLATFORM_ID } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CarService {
-  private apiUrl = 'http://localhost:8089/api/car';
+  private apiUrl = 'http://localhost:8089/api/car'; // Update with your actual API URL
 
   constructor(
     private http: HttpClient,
-    @Inject(PLATFORM_ID) private platformId: any
+    @Inject(PLATFORM_ID) private platformId: Object
   ) {}
 
   getCars(): Observable<Car[]> {
-    const currentUserJSON = localStorage.getItem('currentUser');
-    if (currentUserJSON) {
-      const currentUser = JSON.parse(currentUserJSON);
-      const url = `${this.apiUrl}?clientId=${currentUser.id}`;
-      return this.http.get<Car[]>(url);
+    if (isPlatformBrowser(this.platformId)) {
+      const currentUserJSON = localStorage.getItem('currentUser');
+      if (currentUserJSON) {
+        const currentUser = JSON.parse(currentUserJSON);
+        const url = `${this.apiUrl}?clientId=${currentUser.id}`;
+        return this.http.get<Car[]>(url);
+      }
     }
     return this.http.get<Car[]>(this.apiUrl);
   }
-  
+
   addCar(car: Car): Observable<Car> {
-    const currentUserJSON = localStorage.getItem('currentUser');
-    if (currentUserJSON) {
-      const currentUser = JSON.parse(currentUserJSON);
-      car.clientId = currentUser.id; // Set the clientId from the logged-in user
+    if (isPlatformBrowser(this.platformId)) {
+      const currentUserJSON = localStorage.getItem('currentUser');
+      if (currentUserJSON) {
+        const currentUser = JSON.parse(currentUserJSON);
+        car.clientId = currentUser.id; // Set the clientId from the logged-in user
+      }
     }
     return this.http.post<Car>(this.apiUrl, car);
   }
-  
 
   updateCar(car: Car): Observable<Car> {
     const url = `${this.apiUrl}/${car.id}`;
