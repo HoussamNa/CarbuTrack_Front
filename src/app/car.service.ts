@@ -1,19 +1,29 @@
-import { Injectable } from '@angular/core';
+import { Injectable, PLATFORM_ID, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { isPlatformBrowser } from '@angular/common';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CarService {
-  private apiUrl = 'http://localhost:8089/api/car'; // Update with your actual API URL
+  private apiUrl = 'http://localhost:8089/api/car';
 
-  constructor(private http: HttpClient) {}
+  constructor(
+    private http: HttpClient,
+    @Inject(PLATFORM_ID) private platformId: any
+  ) {}
 
   getCars(): Observable<Car[]> {
+    const currentUserJSON = localStorage.getItem('currentUser');
+    if (currentUserJSON) {
+      const currentUser = JSON.parse(currentUserJSON);
+      const url = `${this.apiUrl}?clientId=${currentUser.id}`;
+      return this.http.get<Car[]>(url);
+    }
     return this.http.get<Car[]>(this.apiUrl);
   }
-
+  
   addCar(car: Car): Observable<Car> {
     const currentUserJSON = localStorage.getItem('currentUser');
     if (currentUserJSON) {
@@ -22,6 +32,7 @@ export class CarService {
     }
     return this.http.post<Car>(this.apiUrl, car);
   }
+  
 
   updateCar(car: Car): Observable<Car> {
     const url = `${this.apiUrl}/${car.id}`;
