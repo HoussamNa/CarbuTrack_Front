@@ -1,11 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { CarService, Car } from '../car.service'; // Import your CarService
+// import * as stylex from 'stylex';
 
 @Component({
   selector: 'app-chart3',
   templateUrl: './chart3.component.html',
   styleUrls: ['./chart3.component.scss']
 })
+
+// const chartStyles = stylex.create({
+//   backgroundColor: '#f0f0f0',
+//   fontFamily: 'sans-serif',
+// });
+
 export class Chart3Component implements OnInit {
   data: any;
   options: any;

@@ -14,6 +14,7 @@ export class AddCarComponent implements OnInit {
   currentPage = 1;
   itemsPerPage = 8;
   editingCar: Car | null = null;
+  searchtext: any;
 
   isCarInfoVisible = false;
   carInfo: any;

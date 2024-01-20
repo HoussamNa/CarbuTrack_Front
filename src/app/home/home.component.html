@@ -1,9 +1,8 @@
 <app-sidebar></app-sidebar>
 <div class="container mt-4">
-  
   <div class="row">
-    <div class="col-md-6 mb-4">
-      <div class="card">
+    <div class="col-md-6">
+      <div class="card mb-4">
         <div class="card-header">
           Today's Gas Price
         </div>
@@ -13,8 +12,8 @@
         </div>
       </div>
     </div>
-    <div class="col-md-6 mb-4">
-      <div class="card">
+    <div class="col-md-6">
+      <div class="card mb-4">
         <div class="card-header">
           Fuel Cost Calculator
         </div>
@@ -35,21 +34,18 @@
               <label for="tripDistance">Trip Distance (kilometers)</label>
               <input type="number" id="tripDistance" formControlName="tripDistance" class="form-control" required>
             </div>
-            <div class="form-group">
-              <label for="result" class="result-label">{{ fuelCostResult }}</label>
-            </div>
-            <button type="submit" class="btn btn-primary">Calculate Fuel Cost</button>
+            <button type="submit" class="btn btn-primary" style="background-color: #4CAF50;">Calculate Fuel Cost</button>
           </form>
+          <div class="result mt-3">
+            <label for="result" class="result-label">{{ fuelCostResult }}</label>
+          </div>
         </div>
       </div>
     </div>
   </div>
-
-  
-
   <div class="row">
-    <div class="col-md-6 mb-4">
-      <div class="card">
+    <div class="col-md-6">
+      <div class="card mb-4">
         <div class="card-header">
           Cars By Fuel Type
         </div>
@@ -58,10 +54,10 @@
         </div>
       </div>
     </div>
-    <div class="col-md-6 mb-4">
-      <div class="card">
+    <div class="col-md-6">
+      <div class="card mb-4">
         <div class="card-header">
-          Chart 3 Title
+          Cars per Brand and Fuel type
         </div>
         <div class="card-body">
           <app-chart3></app-chart3>
@@ -69,22 +65,26 @@
       </div>
     </div>
   </div>
-  <div class="col-md-7 mb-4">
-    <div class="card">
+  <div class="col-md-6">
+    <div class="card weather-card">
       <div class="card-header">
         Today's Weather
       </div>
       <div class="card-body">
-        <p class="card-text">Date: {{ todayWeather?.date }}</p>
-        <p class="card-text">Day: {{ todayWeather?.day }}</p>
-        <p class="card-text">Description: {{ todayWeather?.description }}</p>
-        <p class="card-text">Status: {{ todayWeather?.status }}</p>
-        <p class="card-text">Degree: {{ todayWeather?.degree }}</p>
-        <p class="card-text">Min: {{ todayWeather?.min }}</p>
-        <p class="card-text">Max: {{ todayWeather?.max }}</p>
-        <p class="card-text">Night: {{ todayWeather?.night }}</p>
-        <p class="card-text">Humidity: {{ todayWeather?.humidity }}</p>
+        <div class="row">
+          <div class="col-md-4 text-center">
+            <img src="{{ todayWeather?.icon }}" alt="Weather Icon" class="weather-icon">
+          </div>
+          <div class="col-md-8">
+            <p class="description">{{ todayWeather?.description }}</p>
+            <p class="degree">{{ todayWeather?.degree }}°C</p>
+            <p class="min-max">Min: {{ todayWeather?.min }}°C / Max: {{ todayWeather?.max }}°C</p>
+            <p class="night">Night: {{ todayWeather?.night }}°C</p>
+            <p class="humidity">Humidity: {{ todayWeather?.humidity }}%</p>
+          </div>
+        </div>
       </div>
     </div>
   </div>
+  
 </div>
